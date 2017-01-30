@@ -1,0 +1,8 @@
+bin = Executables
+build = Build Files
+doc = Documentation
+include = class definitions *.h
+test = main.cpp for quick tests
+src = source for the application
+lib = source for the application library *.cpp *.hpp
+spike = Spike Testing and Development (Stage one) 
