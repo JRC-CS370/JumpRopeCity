@@ -8,6 +8,3 @@ Project Members:
 	Jay
 	Kamin
 	Kevin
-
-
-Test Change
