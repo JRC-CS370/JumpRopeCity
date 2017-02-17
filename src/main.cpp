@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     drawingRect.y = 200;
     drawingRect.w = 20;
     drawingRect.h = 20;
-    
+    //pjaephawoir
     bool running = true;
     SDL_Event event;
     
