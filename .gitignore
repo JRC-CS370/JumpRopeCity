@@ -1,0 +1,5 @@
+#Ignore a.out Executable
+.out
+
+#Ignore Mac specific files
+.DS_Store
