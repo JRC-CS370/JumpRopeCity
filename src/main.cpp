@@ -1,49 +1,75 @@
 #include <iostream>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
+#include <SDL2/SDL_ttf.h>
 #include "LTexture.h"
 
 int main(int argc, char** argv)
 {
-    SDL_Window* window = NULL;
-    SDL_Renderer* renderer = NULL;
-    SDL_Texture* texture = NULL;
+    SDL_Window *window = NULL;          
+    SDL_Renderer *renderer = NULL;  
+    SDL_Texture *texture = NULL;
+    
     
     SDL_Init(SDL_INIT_EVERYTHING);
     
+    //create window
     window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 640, 480, SDL_WINDOW_SHOWN);
-    renderer = SDL_CreateRenderer(window, -1, SDL_RENDERER_ACCELERATED);
-    LTexture rectangle;
-    rectangle.setWidth(200);
-    rectangle.setHeight(5);
+    if(window == NULL)
+        std::cout << "window" << SDL_GetError() << std::endl;
     
-    SDL_Rect drawingRect;
-    drawingRect.x = 200;
-    drawingRect.y = 200;
-    drawingRect.w = 20;
-    drawingRect.h = 20;
+    //create renderer
+    renderer = SDL_CreateRenderer(window, -1, 0);
+    if(renderer == NULL)
+        std::cout << "renderer" << SDL_GetError() << std::endl;
     
+    //create rectangle
+    SDL_Rect rect = {230, 180, 200, 10};
+    
+    //create texture
+    texture = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_UNKNOWN, SDL_TEXTUREACCESS_STATIC, rect.w, rect.h);
+    
+    //running game
     bool running = true;
     SDL_Event event;
     
     while(running)
     {
-        while(SDL_PollEvent(&event))
+        SDL_Delay(5);         //restricts to 60fps
+        
+        SDL_PollEvent(&event);
+        switch (event.type)
         {
-            if(event.type == SDL_QUIT)
+            //close window
+            case SDL_QUIT:
                 running = false;
+                break;
+                
+            default:
+                break;
             
         }
-        //i didnt do sdl_point value yet.
-//        render( 200, 200, &drawingRect, renderer, 0.0, SDL_Point* NULL, SDL_FLIP_NONE );
-    
-        SDL_UpdateWindowSurface(window);
-        SDL_Delay(1000/60);
+
+        SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);
+        SDL_RenderClear(renderer);
+        
+        SDL_RenderCopyEx(   renderer, 
+                            texture, 
+                            NULL, 
+                            &rect, 
+                            35, 
+                            NULL, 
+                            SDL_FLIP_NONE);
+        
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
+        SDL_RenderFillRect(renderer, &rect);
+        
+        
+        SDL_RenderPresent(renderer);
     }
     
     SDL_DestroyWindow(window);
-    
-    window = NULL;
+    SDL_DestroyRenderer(renderer);
     
     SDL_Quit();
     
