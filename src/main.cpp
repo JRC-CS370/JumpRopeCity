@@ -32,14 +32,17 @@ int main(int argc, char** argv)
         std::cout << "texture" << SDL_GetError() << std::endl;
     
     //create rectangle and angles
-    LTexture rectangle [10];
-    double angle [10];
-    int x[10];
-    int y[10];
-    for(int i = 0; i < 10; i++)
+    LTexture rectangle [20];
+    double angle [20];
+    int x[20];
+    int y[20];
+    
+    
+    for(int i = 0; i < 20; i++)
     {
         angle[i] = rand() % 360;
         rectangle[i].loadFromFile(renderer, "rope.png");
+        
         x[i] = rand() % 1080;
         y[i] = rand() % 720;
     }
@@ -74,7 +77,7 @@ int main(int argc, char** argv)
         
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         
-        for(int i = 0; i < 10; i++)
+        for(int i = 0; i < 20; i++)
         {
             rectangle[i].render(x[i], y[i], NULL, renderer, angle[i], NULL, SDL_FLIP_NONE);
         }
