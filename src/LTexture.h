@@ -33,12 +33,8 @@ class LTexture
 		void setAlpha( Uint8 alpha );
 		
 		//Renders texture at given point
-		void render( int x, int y, SDL_Rect* clip = NULL, SDL_Renderer* renderer = NULL, double angle = 0.0, SDL_Point* center = NULL, SDL_RendererFlip flip = SDL_FLIP_NONE );
+		void render( int x, int y, SDL_Rect* clip, SDL_Renderer* renderer, double angle, SDL_Point* center, SDL_RendererFlip flip );
 
-                void setWidth(int width);
-                void setHeight(int height);
-                void setTexture(SDL_Texture* texture);
-                
 		//Gets image dimensions
 		int getWidth();
 		int getHeight();

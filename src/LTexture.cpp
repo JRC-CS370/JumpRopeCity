@@ -109,19 +109,5 @@ int LTexture::getWidth()
 int LTexture::getHeight()
 {
 	return mHeight;
-}
 
-void LTexture::setWidth(int width)
-{
-	mWidth = width;
-}
-
-void LTexture::setHeight(int height)
-{
-	mHeight = height;
-}
-
-void LTexture::setTexture(SDL_Texture* texture)
-{
-    mTexture = texture;
 }
