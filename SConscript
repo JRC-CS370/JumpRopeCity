@@ -11,7 +11,7 @@ LIBS = [ 'libminiat', 'libsimple_kb', 'libsimple_term', 'SDL2', 'SDL2_image' ]
 CPPFILES = ['main.cpp', 'LTexture.cpp']
 
 ##Building process
-buildProgram("JumpRopeCity", CPPFILES, CPPPATH=INC, LIBS=LIBS)
+buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS)
 
 
 ##These are for the assmebly Programs####
