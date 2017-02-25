@@ -2,7 +2,7 @@
 Import('*')
 
 ##Include statments, added /system/JumpRopeCity/include
-INC = [ '#/vm/inc', '#/peripherals/simple_kb', '#/peripherals/simple_term', '#/system/JumpRopeCity/include' ]
+INC = [ '#/vm/inc', '#/peripherals/simple_kb', '#/peripherals/simple_term', '#/system/JumpRopeCity/include', '#/system/JumpRopeCity/images' ]
 
 ##Detectes the Librarys
 LIBS = [ 'libminiat', 'libsimple_kb', 'libsimple_term', 'SDL2', 'SDL2_image' ]
