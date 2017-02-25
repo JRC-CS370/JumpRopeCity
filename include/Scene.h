@@ -1,10 +1,11 @@
-#include <iostream>
-#include "Define.h"
+#include <string>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 
 #ifndef SCENE_H
 #define SCENE_H
 
-class SCENE
+class Scene
 {
   public:
 
@@ -15,7 +16,10 @@ class SCENE
     ~Scene();
 
     //Creates the Window
-    SceneCreation();
+    void SceneCreation();
+
+    //Displays Screen
+    void SceneDisplay();
 
 
 
@@ -23,10 +27,13 @@ class SCENE
     //Screne Peramaters
     int mSceneWidth;
     int mSceneHeight;
-    string mSceneName;
+    std::string mSceneName;
 
     //SDL Stuff
     SDL_Window *mWindow;
     SDL_Renderer *mRenderer;
     SDL_Texture *mTexture;
-}
+    SDL_Surface *mSurface;
+};
+
+#endif

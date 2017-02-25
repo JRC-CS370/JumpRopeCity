@@ -8,7 +8,7 @@ INC = [ '#/vm/inc', '#/peripherals/simple_kb', '#/peripherals/simple_term', '#/s
 LIBS = [ 'libminiat', 'libsimple_kb', 'libsimple_term', 'SDL2', 'SDL2_image' ]
 
 ##Required CPP Files
-CPPFILES = ['main.cpp', 'LTexture.cpp']
+CPPFILES = ['main.cpp', 'Scene.cpp']
 
 ##Building process
 buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS)
