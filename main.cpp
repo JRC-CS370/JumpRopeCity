@@ -35,6 +35,7 @@ int main(int argc, char** argv)
     //creates points but they cannot be 200 pixels near each other
     //also makes it so that ropes cannot be over 300 pixels away from each other
     
+
     //angle of the rope
     int angle = 0;
     
@@ -51,7 +52,7 @@ int main(int argc, char** argv)
             xPos = rand() % 50 + 100;
             yPos += rand() % 50 + 100;
         }
-        
+
         ropes[i].setX(xPos);
         ropes[i].setY(yPos);
         
@@ -60,8 +61,7 @@ int main(int argc, char** argv)
         
         angle = rand() % 180;
         ropes[i].setAngle(angle);
-        
-        ropes[i].setTexture("images/Rope.png", renderer);
+        ropes[i].setTexture("../../system/JumpRopeCity/images/Rope.png", renderer);
         
     }
     
