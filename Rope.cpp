@@ -4,11 +4,11 @@ Rope::Rope()
 {
     //Initialize
     mTexture = NULL;
-    mWidth = 15;
-    mHeight = 100;
+    mWidth = 100;
+    mHeight = 15;
     
-    point.x = 0;
-    point.y = 0;
+    midpoint.x = 0;
+    midpoint.y = 0;
     
     angle = 0;
 }
@@ -24,10 +24,7 @@ void Rope::setTexture(std::string path, SDL_Renderer* renderer)
         SDL_DestroyTexture(mTexture);
 
     //Load image
-    // ../.. backtracks two folders, jumps into system and then JRC into images and then the rope png
-    std::cout << JR_HOME << std::endl;
-    SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
-
+    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == NULL)
         std::cout << "Load image error " << IMG_GetError() << std::endl;
     else
@@ -52,6 +49,7 @@ void Rope::free()
         mWidth = 0;
         mHeight = 0;
     }
+    
 }
 
 void Rope::render(int x, int y, SDL_Rect* rect, SDL_Renderer* renderer, double angle, SDL_Point* center, SDL_RendererFlip flip)
@@ -80,29 +78,25 @@ int Rope::getHeight()
     return mHeight;
 }
 
-int Rope::getX()
+SDL_Point* Rope::getPoint()
 {
-    return point.x;
+    return &midpoint;
 }
 
-int Rope::getY()
-{
-    return point.y;
-}
 
 int Rope::getAngle()
 {
     return angle;
 }
 
-void Rope::setX(int newX)
+void Rope::setPointX(int newX)
 {
-    point.x = newX;
+    midpoint.x = newX;
 }
 
-void Rope::setY(int newY)
+void Rope::setPointY(int newY)
 {
-    point.y = newY;
+    midpoint.y = newY;
 }
 
 void Rope::setAngle(int newAngle)

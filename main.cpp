@@ -3,10 +3,9 @@
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <time.h>
-#include <stdlib.h>
 #include "Rope.h"
 
-#define total 30
+#define total 25
 
 int main(int argc, char** argv)
 {
@@ -35,7 +34,6 @@ int main(int argc, char** argv)
     //creates points but they cannot be 200 pixels near each other
     //also makes it so that ropes cannot be over 300 pixels away from each other
     
-
     //angle of the rope
     int angle = 0;
     
@@ -47,27 +45,30 @@ int main(int argc, char** argv)
     for(int i = 0; i < total; i++)
     {
         xPos += rand() % 50 + 100;
-        if(xPos > 930) //150 pixels off from the side
+        if(xPos > 900) //150 pixels off from the side
         {
             xPos = rand() % 50 + 100;
-            yPos += rand() % 50 + 100;
+            yPos += rand() % 100 + 100;
         }
-
-        ropes[i].setX(xPos);
-        ropes[i].setY(yPos);
         
-        /*std::cout << i << " x " << ropes[i].getX() << std::endl;
-        std::cout << i << " y " << ropes[i].getY() << std::endl;*/
+        ropes[i].setPointX(xPos);
+        ropes[i].setPointY(yPos);
+        
         
         angle = rand() % 180;
         ropes[i].setAngle(angle);
-        ropes[i].setTexture("/images/Rope.png", renderer);
+        ropes[i].setTexture("images/Rope.png", renderer);
         
     }
+    
     
     //running game
     bool running = true;
     SDL_Event event;
+    
+    //player rect for testing. 
+    SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
+    SDL_Rect player = {0, 0, 30, 30};
     
     
     while(running)
@@ -79,21 +80,46 @@ int main(int argc, char** argv)
             case SDL_QUIT:
                 running = false;
                 break;
+            
+            //move the player
+            //unsure how to do diagonal
+            case SDL_KEYDOWN:
+                switch(event.key.keysym.sym)
+                {
+                    case SDLK_LEFT:
+                        player.x--;
+                        break;
+                    case SDLK_RIGHT:
+                        player.x++;
+                        break;
+                    case SDLK_UP:
+                        player.y--;
+                        break;
+                    case SDLK_DOWN:
+                        player.y++;
+                        break;
+                }
+                break;
                 
             default:
                 break;
         
         }
-        //resets the renderer
-        SDL_RenderClear(renderer);
-        
         //makes window background not black
         SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);
         
+        //resets the renderer
+        SDL_RenderClear(renderer);
+        
+        //draws a rectangle
+        SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         //renders ropes to screen
         for(int i = 0; i < total; i++)
-            ropes[i].render(ropes[i].getX(), ropes[i].getY(), NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
+            ropes[i].render(ropes[i].getPoint()->x, ropes[i].getPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
         
+        SDL_RenderFillRect(renderer, &player);
+        
+
         //outputs the renderer
         SDL_RenderPresent(renderer);
         
