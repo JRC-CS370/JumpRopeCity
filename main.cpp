@@ -61,7 +61,7 @@ int main(int argc, char** argv)
         
         angle = rand() % 180;
         ropes[i].setAngle(angle);
-        ropes[i].setTexture("../../system/JumpRopeCity/images/Rope.png", renderer);
+        ropes[i].setTexture("/images/Rope.png", renderer);
         
     }
     

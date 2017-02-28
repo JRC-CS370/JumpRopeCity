@@ -13,10 +13,15 @@ CPPFILES = ['main.cpp', 'Rope.cpp', 'Scene.cpp']
 
 #print "\t\t\t\t\t@@@@@@@", os.getcwd()
 rootdir = os.getcwd()
-print "\t\t\t\t\t@@@@@@@", rootdir
-imageDir = os.path.join(rootdir, '..', '..', 'system', 'JumpRopeCity')
 
-print "\t\t\t\t\t@@@@@@@", imageDir
+##Used for testing rootdir
+print "@@@@@@@", rootdir
+
+#Combining rootdir with ../../../system/JumpRopeCity/
+imageDir = os.path.join(rootdir, '..', '..', '..', 'system', 'JumpRopeCity')
+
+##Testing the imgageDir to make sure it works
+print "@@@@@@@", imageDir
 
 ##Building process
 buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS, CPPDEFINES=[ 'JR_HOME=\\"%s\\"' % imageDir])
