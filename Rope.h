@@ -30,7 +30,11 @@ class Rope
         int getHeight();
         
         //gets start point on screen
-        SDL_Point* getPoint();
+        SDL_Point* getMidPoint();
+        
+        //gets end points
+        SDL_Point* getPointA();
+        SDL_Point* getPointB();
         
         //gets angle
         int getAngle();
@@ -42,8 +46,8 @@ class Rope
         void setTexture(std::string path, SDL_Renderer* renderer);
         
         //set point a position
-        void setPointX(int newX);
-        void setPointY(int newY);
+        void setMidPointX(int newX);
+        void setMidPointY(int newY);
         
         //sets angle
         void setAngle(int newAngle);
@@ -54,16 +58,22 @@ class Rope
         SDL_Texture* mTexture;
     
         //Image dimensions
-        int mWidth;             //image is 15
-        int mHeight;            //image is 100
+        int mWidth;             //image is 100
+        int mHeight;            //image is 12
         
         //position on the map
         SDL_Point midpoint;
+        
+        //end points of the rope
+        SDL_Point pointA;
+        SDL_Point pointB;
         
         //angle it is
         //can be 0-180
         int angle;
         
+        void setPointA(SDL_Point* midpoint, int angle);
+        void setPointB(SDL_Point* midpoint, int angle);
 };
 
 #endif /* ROPE_H */
