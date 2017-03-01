@@ -4,14 +4,11 @@
 #include <SDL2/SDL_ttf.h>
 #include <time.h>
 #include "Rope.h"
-#include "Scene.h"
-#include "Define.h"
 
 #define total 25
 
 int main(int argc, char** argv)
 {
-  //Test Comment
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
@@ -43,7 +40,6 @@ int main(int argc, char** argv)
     int xPos = 0;
     int yPos = rand() % 50 + 50;
 
-    int situation = 0;
 
     for(int i = 0; i < total; i++)
     {
@@ -53,27 +49,15 @@ int main(int argc, char** argv)
             xPos = rand() % 50 + 100;
             yPos += rand() % 100 + 100;
         }
-<<<<<<< HEAD
-        
+
         ropes[i].setMidPointX(xPos);
         ropes[i].setMidPointY(yPos);
-        
-        
+
+
         angle = rand() % 180;
         ropes[i].setAngle(angle);
         ropes[i].setTexture("images/Rope.png", renderer);
-        
-=======
 
-        ropes[i].setPointX(xPos);
-        ropes[i].setPointY(yPos);
-
-
-        angle = rand() % 180;
-        ropes[i].setAngle(angle);
-        ropes[i].setTexture("/images/Rope.png", renderer);
-
->>>>>>> refs/remotes/origin/master
     }
 
 
@@ -128,17 +112,24 @@ int main(int argc, char** argv)
 
         //draws a rectangle
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        
         //renders ropes to screen
-        for(int i = 0; i < total; i++)
-<<<<<<< HEAD
+/*        for(int i = 0; i < total; i++)
             ropes[i].render(ropes[i].getMidPoint()->x, ropes[i].getMidPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
+*/
+        ropes[0].setAngle(0);
+        ropes[0].render(ropes[0].getMidPoint()->x, ropes[0].getMidPoint()->y, NULL, renderer, ropes[0].getAngle(), NULL, SDL_FLIP_NONE);
+        
+        std::cout<<"midpoint1 x = " << ropes[0].getMidPoint()->x << " y= " << ropes[0].getMidPoint()->y << std::endl;
+        std::cout<<"point1 x = " << ropes[0].getPointA()->x << " y= " << ropes[0].getPointA()->y << std::endl;
         
         
-=======
-            ropes[i].render(ropes[i].getPoint()->x, ropes[i].getPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
-
->>>>>>> refs/remotes/origin/master
+        ropes[1].setAngle(90);
+        ropes[1].render(ropes[1].getMidPoint()->x, ropes[1].getMidPoint()->y, NULL, renderer, ropes[1].getAngle(), NULL, SDL_FLIP_NONE);
+        
+        std::cout<<"midpoint2 x = " << ropes[1].getMidPoint()->x << " y= " << ropes[1].getMidPoint()->y << std::endl;
+        std::cout<<"point2 x = " << ropes[1].getPointA()->x << " y= " << ropes[1].getPointA()->y << std::endl;
+                
+        
         SDL_RenderFillRect(renderer, &player);
 
 

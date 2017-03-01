@@ -1,5 +1,4 @@
 #include "Rope.h"
-
 #define PI 3.141592653
 
 Rope::Rope()
@@ -32,7 +31,7 @@ void Rope::setTexture(std::string path, SDL_Renderer* renderer)
         SDL_DestroyTexture(mTexture);
 
     //Load image
-    SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
+    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
     if(loadedSurface == NULL)
         std::cout << "Load image error " << IMG_GetError() << std::endl;
     else
@@ -95,7 +94,6 @@ SDL_Point* Rope::getPointA()
 {
     return &pointA;
 }
-
 SDL_Point* Rope::getPointB()
 {
     return &pointB;
@@ -116,30 +114,27 @@ void Rope::setMidPointX(int newX)
     midpoint.x = newX;
 }
 
-void Rope::setMidPointY(int newY){
-
+void Rope::setMidPointY(int newY)
+{
     midpoint.y = newY;
 }
 
 void Rope::setAngle(int newAngle)
 {
     angle = newAngle;
-    setPointA(&midpoint, angle);
-    setPointB(&midpoint, angle);
+    setPointA(angle);
+    setPointA(angle);
+    
 }
 
-void Rope::setPointA(SDL_Point* midpoint, int angle)
+void Rope::setPointA(int angle)
 {
-    pointA.x = midpoint->x + (int)(cos(angle * (PI/180)) * mWidth/2);
-    if(angle == 90 || angle == 270)
-        pointA.x = midpoint->x;
-    pointA.y = midpoint->y + (int)(sin(angle * (PI/180)) * mWidth/2);
+    pointA.x = midpoint.x + (cos(angle * (PI/180)) * mWidth/2);
+    pointA.y = midpoint.y + (sin(angle * (PI/180)) * mWidth/2);
 }
 
-void Rope::setPointB(SDL_Point* midpoint, int angle)
+void Rope::setPointB(int angle)
 {
-    pointB.x = midpoint->x - (int)(cos(angle * (PI/180)) * mWidth/2);
-    if(angle == 90 || angle == 270)
-        pointB.x = midpoint->x;
-    pointB.y = midpoint->y - (int)(sin(angle * (PI/180)) * mWidth/2);
+    pointB.x = midpoint.x - (cos(angle * (PI/180)) * mWidth/2);
+    pointB.y = midpoint.y - (sin(angle * (PI/180)) * mWidth/2);
 }

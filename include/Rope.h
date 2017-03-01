@@ -1,8 +1,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
-#include <stdio.h>
 #include <string>
-#include <cmath>
+#include <math.h>
 #include <iostream>
 #include <cstring>
 
@@ -30,9 +29,10 @@ class Rope
         int getWidth();
         int getHeight();
         
-        //gets positions on screen
-        int getX();
-        int getY();
+        //gets start point on screen
+        SDL_Point* getMidPoint();
+        SDL_Point* getPointA();
+        SDL_Point* getPointB();
         
         //gets angle
         int getAngle();
@@ -43,9 +43,9 @@ class Rope
         //Loads image at a place
         void setTexture(std::string path, SDL_Renderer* renderer);
         
-        //set position
-        void setX(int newX);
-        void setY(int newY);
+        //set point a position
+        void setMidPointX(int newX);
+        void setMidPointY(int newY);
         
         //sets angle
         void setAngle(int newAngle);
@@ -60,14 +60,17 @@ class Rope
         int mHeight;            //image is 100
         
         //position on the map
-        SDL_Point point;
+        SDL_Point midpoint;
+        SDL_Point pointA;
+        SDL_Point pointB;
         
         //angle it is
         //can be 0-180
         int angle;
         
+        void setPointA(int angle);
+        void setPointB(int angle);
         
 };
 
 #endif /* ROPE_H */
-
