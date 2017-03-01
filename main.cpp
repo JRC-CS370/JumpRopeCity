@@ -9,7 +9,7 @@
 
 int main(int argc, char** argv)
 {
-  //Test Comment
+  
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
