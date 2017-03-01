@@ -24,7 +24,7 @@ void Rope::setTexture(std::string path, SDL_Renderer* renderer)
         SDL_DestroyTexture(mTexture);
 
     //Load image
-    SDL_Surface* loadedSurface = IMG_Load(path.c_str());
+    SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
     if(loadedSurface == NULL)
         std::cout << "Load image error " << IMG_GetError() << std::endl;
     else
