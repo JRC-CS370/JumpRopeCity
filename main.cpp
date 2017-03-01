@@ -4,6 +4,8 @@
 #include <SDL2/SDL_ttf.h>
 #include <time.h>
 #include "Rope.h"
+#include "Scene.h"
+#include "Define.h"
 
 #define total 25
 
@@ -56,7 +58,7 @@ int main(int argc, char** argv)
 
         angle = rand() % 180;
         ropes[i].setAngle(angle);
-        ropes[i].setTexture("images/Rope.png", renderer);
+        ropes[i].setTexture("/images/Rope.png", renderer);
 
     }
 
@@ -113,23 +115,9 @@ int main(int argc, char** argv)
         //draws a rectangle
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         //renders ropes to screen
-/*        for(int i = 0; i < total; i++)
+        for(int i = 0; i < total; i++)
             ropes[i].render(ropes[i].getMidPoint()->x, ropes[i].getMidPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
-*/
-        ropes[0].setAngle(0);
-        ropes[0].render(ropes[0].getMidPoint()->x, ropes[0].getMidPoint()->y, NULL, renderer, ropes[0].getAngle(), NULL, SDL_FLIP_NONE);
-        
-        std::cout<<"midpoint1 x = " << ropes[0].getMidPoint()->x << " y= " << ropes[0].getMidPoint()->y << std::endl;
-        std::cout<<"point1 x = " << ropes[0].getPointA()->x << " y= " << ropes[0].getPointA()->y << std::endl;
-        
-        
-        ropes[1].setAngle(90);
-        ropes[1].render(ropes[1].getMidPoint()->x, ropes[1].getMidPoint()->y, NULL, renderer, ropes[1].getAngle(), NULL, SDL_FLIP_NONE);
-        
-        std::cout<<"midpoint2 x = " << ropes[1].getMidPoint()->x << " y= " << ropes[1].getMidPoint()->y << std::endl;
-        std::cout<<"point2 x = " << ropes[1].getPointA()->x << " y= " << ropes[1].getPointA()->y << std::endl;
-                
-        
+
         SDL_RenderFillRect(renderer, &player);
 
 
