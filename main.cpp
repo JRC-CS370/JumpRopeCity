@@ -4,12 +4,17 @@
 #include <SDL2/SDL_ttf.h>
 #include <time.h>
 #include "Rope.h"
+#include "Scene.h"
+#include "Define.h"
 
 #define total 25
 
 int main(int argc, char** argv)
 {
+<<<<<<< HEAD
   
+=======
+>>>>>>> origin/master
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
@@ -41,7 +46,6 @@ int main(int argc, char** argv)
     int xPos = 0;
     int yPos = rand() % 50 + 50;
 
-    int situation = 0;
 
     for(int i = 0; i < total; i++)
     {
@@ -52,8 +56,8 @@ int main(int argc, char** argv)
             yPos += rand() % 100 + 100;
         }
 
-        ropes[i].setPointX(xPos);
-        ropes[i].setPointY(yPos);
+        ropes[i].setMidPointX(xPos);
+        ropes[i].setMidPointY(yPos);
 
 
         angle = rand() % 180;
@@ -116,7 +120,7 @@ int main(int argc, char** argv)
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
         //renders ropes to screen
         for(int i = 0; i < total; i++)
-            ropes[i].render(ropes[i].getPoint()->x, ropes[i].getPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
+            ropes[i].render(ropes[i].getMidPoint()->x, ropes[i].getMidPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
 
         SDL_RenderFillRect(renderer, &player);
 

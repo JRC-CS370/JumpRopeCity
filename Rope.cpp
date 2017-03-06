@@ -1,4 +1,5 @@
 #include "Rope.h"
+#define PI 3.141592653
 
 Rope::Rope()
 {
@@ -9,6 +10,12 @@ Rope::Rope()
     
     midpoint.x = 0;
     midpoint.y = 0;
+    
+    pointA.x = 0;
+    pointA.y = 0;
+    
+    pointB.x = 0;
+    pointB.y = 0;
     
     angle = 0;
 }
@@ -78,23 +85,36 @@ int Rope::getHeight()
     return mHeight;
 }
 
-SDL_Point* Rope::getPoint()
+SDL_Point* Rope::getMidPoint()
 {
     return &midpoint;
 }
 
+SDL_Point* Rope::getPointA()
+{
+    return &pointA;
+}
+SDL_Point* Rope::getPointB()
+{
+    return &pointB;
+}
 
 int Rope::getAngle()
 {
     return angle;
 }
 
-void Rope::setPointX(int newX)
+SDL_Texture* Rope::getTexture()
+{
+    return mTexture;
+}
+
+void Rope::setMidPointX(int newX)
 {
     midpoint.x = newX;
 }
 
-void Rope::setPointY(int newY)
+void Rope::setMidPointY(int newY)
 {
     midpoint.y = newY;
 }
@@ -102,9 +122,19 @@ void Rope::setPointY(int newY)
 void Rope::setAngle(int newAngle)
 {
     angle = newAngle;
+    setPointA(angle);
+    setPointA(angle);
+    
 }
 
-SDL_Texture* Rope::getTexture()
+void Rope::setPointA(int angle)
 {
-    return mTexture;
+    pointA.x = midpoint.x + (cos(angle * (PI/180)) * mWidth/2);
+    pointA.y = midpoint.y + (sin(angle * (PI/180)) * mWidth/2);
+}
+
+void Rope::setPointB(int angle)
+{
+    pointB.x = midpoint.x - (cos(angle * (PI/180)) * mWidth/2);
+    pointB.y = midpoint.y - (sin(angle * (PI/180)) * mWidth/2);
 }
