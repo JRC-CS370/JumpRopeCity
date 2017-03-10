@@ -11,10 +11,7 @@
 
 int main(int argc, char** argv)
 {
-<<<<<<< HEAD
-  
-=======
->>>>>>> origin/master
+
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
