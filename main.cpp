@@ -1,20 +1,40 @@
 #include <iostream>
+#include <string>
+#include <stdlib.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <SDL2/SDL_ttf.h>
 #include <time.h>
+#include <errno.h>
+#include <signal.h>
+#include <inttypes.h>
+
 #include "Rope.h"
 #include "Scene.h"
 #include "Define.h"
+#include "miniat/miniat.h"
+#include "Peripherals.h"
+
+#define MAX_CYCLES UINT64_MAX
 
 #define total 25
 
+miniat *m = NULL;
+char *input_filename = NULL;
+FILE *infile = NULL;
+
+uint64_t cycles = 0;
+
+static void cleanup();
+static void miniat_start(int argc, char *argv[]);
+static void parse_options(int argc, char *argv[]);
+static void print_usage();
+
+//Might not need this one
+static void signal_handler(int sig);
+
 int main(int argc, char** argv)
 {
-<<<<<<< HEAD
-  
-=======
->>>>>>> origin/master
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
@@ -139,4 +159,101 @@ int main(int argc, char** argv)
     SDL_Quit();
 
     return 0;
+}
+
+static void miniat_start(int argc, char *argv[]) {
+
+    signal(SIGINT, signal_handler);
+    signal(SIGTERM, signal_handler);
+
+    atexit(cleanup);
+
+    parse_options(argc, argv);
+
+    //READS IN FILENAME FROM ARGUMENTS
+    infile = fopen(input_filename, "r+b");
+    if(!infile) {
+        fprintf(stderr, "Couldn't open \"%s\".  %s", input_filename, strerror(errno));
+        exit(EXIT_FAILURE);
+    }
+
+    //SENDS BINARY FILE, CREATES INSTANCE OF MINIAT
+    m = miniat_new(infile, NULL);
+
+    //FOREVER
+    for(;;) {
+        //CLOCK CYCLE
+        if(cycles < MAX_CYCLES) {
+            cycles++;
+        }
+
+        miniat_clock(m);
+        peripherals_clock(m);
+        //We don't currently have any ports only peripherals
+        //ports_clock(m);
+    }
+
+    return;
+}
+
+
+static void signal_handler(int sig) {
+
+    if(sig == SIGINT || sig == SIGTERM) {
+        exit(EXIT_SUCCESS);
+    }
+
+    return;
+}
+
+static void cleanup() {
+
+    if(m) {
+        /* MiniAT also closes the binary file it was passed on miniat_new */
+        miniat_free(m);
+    }
+
+    /*
+     * Call all the other cleanup functions
+     */
+    peripherals_cleanup();
+    //Didnt use ports explained in the above function
+    //ports_cleanup();
+
+    if(cycles < MAX_CYCLES) {
+        printf("\n%"PRIu64" cycles executed\n", cycles);
+    }
+    else {
+        printf("Runtime exceeded %"PRIu64" cycles!\n", MAX_CYCLES);
+    }
+
+    return;
+}
+
+
+/*
+ * print_usage()
+ *
+ * Display command and option usage
+ */
+static void print_usage() {
+
+    fprintf(stderr, "\n");
+    //fprintf(stderr, "Usage:  ",EXECUTABLE," [bin_file]\n");
+    fprintf(stderr, "\n");
+
+    return;
+}
+
+
+static void parse_options(int argc, char *argv[]) {
+
+    if(argc != 2) {
+        print_usage();
+        exit(EXIT_FAILURE);
+    }
+
+    input_filename = argv[1];
+
+    return;
 }
