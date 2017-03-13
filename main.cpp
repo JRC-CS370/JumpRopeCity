@@ -7,7 +7,7 @@
 #include "Scene.h"
 #include "Define.h"
 
-#define total 25
+#define total 5
 
 int main(int argc, char** argv)
 {
@@ -22,7 +22,7 @@ int main(int argc, char** argv)
     SDL_Init(SDL_INIT_EVERYTHING);
 
     //create window 1080x720
-    window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 1080, 720, SDL_WINDOW_SHOWN);
+    window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 860, 720, SDL_WINDOW_SHOWN);
     if(window == NULL)
         std::cout << "window" << SDL_GetError() << std::endl;
 
@@ -32,35 +32,33 @@ int main(int argc, char** argv)
         std::cout << "renderer" << SDL_GetError() << std::endl;
 
     //create an array of ropes
-    Rope ropes[total];
-
-    //creates points but they cannot be 200 pixels near each other
-    //also makes it so that ropes cannot be over 300 pixels away from each other
+    Rope ropes[5][5];
 
     //angle of the rope
     int angle = 0;
-
     int xPos = 0;
-    int yPos = rand() % 50 + 50;
+    int yPos = 100;
+    int makeRope = 0;
 
-
-    for(int i = 0; i < total; i++)
+    for(int y = 0; y < total; y++)
     {
-        xPos += rand() % 50 + 100;
-        if(xPos > 900) //150 pixels off from the side
-        {
-            xPos = rand() % 50 + 100;
-            yPos += rand() % 100 + 100;
-        }
+	for(int x = 0; x < total; x++)
+    	{
+    	    makeRope = rand() % 3;
 
-        ropes[i].setMidPointX(xPos);
-        ropes[i].setMidPointY(yPos);
+            if(makeRope == 0)
+            {
+		xPos+=125;
 
-
-        angle = rand() % 180;
-        ropes[i].setAngle(angle);
-        ropes[i].setTexture("/images/Rope.png", renderer);
-
+                ropes[y][x].setMidPointX(xPos);
+	        ropes[y][x].setMidPointY(yPos);
+	        angle = rand() % 2;
+                ropes[y][x].setAngle(angle);
+                ropes[y][x].setTexture("/images/Rope.png", renderer);
+            }
+	}
+		yPos += 125;
+		xPos = 0;
     }
 
 
@@ -115,10 +113,15 @@ int main(int argc, char** argv)
 
         //draws a rectangle
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
-        //renders ropes to screen
-        for(int i = 0; i < total; i++)
-            ropes[i].render(ropes[i].getMidPoint()->x, ropes[i].getMidPoint()->y, NULL, renderer, ropes[i].getAngle(), NULL, SDL_FLIP_NONE);
-
+ 
+       //renders ropes to screen
+        for(int y = 0; y < total; y++)
+	{
+             for(int x = 0; x < total; x++)
+             {
+                  ropes[y][x].render(ropes[y][x].getMidPoint()->x, ropes[y][x].getMidPoint()->y, NULL, renderer, ropes[y][x].getAngle(), NULL, SDL_FLIP_NONE);
+             }
+        }
         SDL_RenderFillRect(renderer, &player);
 
 

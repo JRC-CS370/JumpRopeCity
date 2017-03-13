@@ -121,9 +121,13 @@ void Rope::setMidPointY(int newY)
 
 void Rope::setAngle(int newAngle)
 {
-    angle = newAngle;
+    if(newAngle == 0)
+	angle = 0;
+    else
+   	angle = 90;
+
     setPointA(angle);
-    setPointA(angle);
+    setPointB(angle);
     
 }
 
