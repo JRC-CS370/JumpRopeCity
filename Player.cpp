@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 
+=======
+<<<<<<< HEAD
+#include "Player.h"
+#include "Define.h"
+#include <iostream>
+=======
+>>>>>>> b80ada75550d12ede32bc9857607d1e285477a8a
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
@@ -9,9 +17,12 @@ using namespace std;
 #include "Player.h"
 #include "Define.h"
 #include <iostream>
-
-
 Player::Player()
+{
+
+}
+
+Player::~Player()
 {
 
 }
@@ -60,3 +71,4 @@ Player::~Player()
 {
 
 }
+
