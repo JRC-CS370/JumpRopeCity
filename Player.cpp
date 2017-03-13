@@ -1,3 +1,4 @@
+
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_image.h>
 #include <string>
@@ -5,6 +6,10 @@
 #include "Player.h"
 
 using namespace std;
+#include "Player.h"
+#include "Define.h"
+#include <iostream>
+
 
 Player::Player()
 {
@@ -47,6 +52,11 @@ int Player::getThrottle()
 }
 
 int Player::getSpeed()
+{
+
+}
+
+Player::~Player()
 {
 
 }
