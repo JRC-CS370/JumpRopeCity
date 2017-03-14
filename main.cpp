@@ -6,6 +6,7 @@
 #include "Rope.h"
 #include "Scene.h"
 #include "Define.h"
+#include "Player.h"
 
 #define total 5
 
@@ -48,11 +49,16 @@ int main(int argc, char** argv)
 
             if(makeRope == 0)
             {
-		xPos+=125;
+                xPos+=125;
 
+                //Sets the x,y position of the rope
                 ropes[y][x].setMidPointX(xPos);
-	        ropes[y][x].setMidPointY(yPos);
-	        angle = rand() % 2;
+                ropes[y][x].setMidPointY(yPos);
+
+                //Decides the angle for the rope to be set to
+                angle = rand() % 2;
+
+                //Actually sets the rope and loads the textur
                 ropes[y][x].setAngle(angle);
                 ropes[y][x].setTexture("/images/Rope.png", renderer);
             }
@@ -67,9 +73,9 @@ int main(int argc, char** argv)
     SDL_Event event;
 
     //player rect for testing.
-    SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
-    SDL_Rect player = {0, 0, 30, 30};
-
+    //SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
+    //SDL_Rect player = {0, 0, 30, 30};
+    Player newCharacter = Player(window);
 
     while(running)
     {
@@ -87,16 +93,16 @@ int main(int argc, char** argv)
                 switch(event.key.keysym.sym)
                 {
                     case SDLK_LEFT:
-                        player.x--;
+                        newCharacter.keyMovement(1);
                         break;
                     case SDLK_RIGHT:
-                        player.x++;
+                        newCharacter.keyMovement(2);
                         break;
                     case SDLK_UP:
-                        player.y--;
+                        newCharacter.keyMovement(3);
                         break;
                     case SDLK_DOWN:
-                        player.y++;
+                        newCharacter.keyMovement(4);
                         break;
                 }
                 break;
@@ -122,8 +128,8 @@ int main(int argc, char** argv)
                   ropes[y][x].render(ropes[y][x].getMidPoint()->x, ropes[y][x].getMidPoint()->y, NULL, renderer, ropes[y][x].getAngle(), NULL, SDL_FLIP_NONE);
              }
         }
-        SDL_RenderFillRect(renderer, &player);
-
+        //SDL_RenderFillRect(renderer, &player);
+        //newCharacter.renderPlayer(renderer);
 
         //outputs the renderer
         SDL_RenderPresent(renderer);
