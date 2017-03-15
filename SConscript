@@ -20,11 +20,14 @@ print "@@@@@@@", rootdir
 #Combining rootdir with ../../../system/JumpRopeCity/
 imageDir = os.path.join(rootdir, '..', '..', '..', 'system', 'JumpRopeCity')
 
+executableDir = os.path.join(rootdir, '..', '..', '..', 'out', 'bin')
+
 ##Testing the imgageDir to make sure it works
 print "@@@@@@@", imageDir
+print "executableDir = ", executableDir
 
 ##Building process
-buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS, CPPDEFINES=[ 'JR_HOME=\\"%s\\"' % imageDir])
+buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS, CPPDEFINES=[ 'JR_HOME=\\"%s\\"' % imageDir, 'EXECUTABLE=\\"%s\\"' % executableDir ])
 
 
 ##These are for the assembly Programs####

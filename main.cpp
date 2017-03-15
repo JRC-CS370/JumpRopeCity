@@ -35,6 +35,9 @@ static void signal_handler(int sig);
 
 int main(int argc, char** argv)
 {
+
+    miniat_start(argc, argv);
+
     SDL_Window *window = NULL;
     SDL_Renderer *renderer = NULL;
     SDL_Texture *texture = NULL;
@@ -178,10 +181,14 @@ static void miniat_start(int argc, char *argv[]) {
     if(!infile) {
         fprintf(stderr, "Couldn't open \"%s\".  %s", input_filename, strerror(errno));
         exit(EXIT_FAILURE);
+    }else
+    {
+        std::cout << "The file was opened a-ok" << std::endl;
     }
 
     //SENDS BINARY FILE, CREATES INSTANCE OF MINIAT
     m = miniat_new(infile, NULL);
+    std::cout << "Created a new instance of MiniAT" << std::endl;
 
     //FOREVER
     for(;;) {
@@ -242,7 +249,7 @@ static void cleanup() {
 static void print_usage() {
 
     fprintf(stderr, "\n");
-    //fprintf(stderr, "Usage:  ",EXECUTABLE," [bin_file]\n");
+    fprintf(stderr, "Usage:  "EXECUTABLE" [bin_file]\n");
     fprintf(stderr, "\n");
 
     return;
@@ -251,12 +258,25 @@ static void print_usage() {
 
 static void parse_options(int argc, char *argv[]) {
 
+    std::cout << "reached parse_options function" << std::endl;
     if(argc != 2) {
         print_usage();
         exit(EXIT_FAILURE);
     }
 
-    input_filename = argv[1];
+    std::cout << "read in the file name a-ok" << std::endl;
+    //std::cout << (EXECUTABLE) << argv[1] << std::endl;
 
+    std::string tempFileName = std::string(EXECUTABLE) + "/" + std::string(argv[1]);
+    std::cout << tempFileName << std::endl;
+    //input_filename = (tempFileName).c_str();
+
+    std::cout << "Starting to strcpy" << std::endl;
+    char *writable = new char[tempFileName.size() + 1];
+    std::copy(tempFileName.begin(), tempFileName.end(), writable);
+    std::cout << "Ending strcpy" << std::endl;
+    std::cout << "Copy to input_filename";
+
+    input_filename = writable;
     return;
 }
