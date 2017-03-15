@@ -28,6 +28,6 @@ buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS, CPPDEFINES=[ 
 
 
 ##These are for the assembly Programs####
-#buildMash('simple_term.asm')           #
+buildMash('jump2.asm')           
 #buildMash('simple_term_flash_demo.asm')#
 #########################################
