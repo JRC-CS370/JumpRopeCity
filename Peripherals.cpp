@@ -2,10 +2,10 @@
 #include "Peripherals.h"
 #include "miniat/miniat.h"
 
-//Proximity Scan; LOAD
+//Proximity Scan; LOAD functions
 #define P_PROX_SCAN 0x4000
 
-//Direction Scan; LOAD
+//Direction Scan; LOAD functions
 #define P_SCAN_N 0x4010
 #define P_SCAN_NW 0x4011
 #define P_SCAN_W 0x4012
@@ -15,7 +15,7 @@
 #define P_SCAN_E 0x4016
 #define P_SCAN_NE 0x4017
 
-//Movement Stuff; STOR
+//Movement Stuff; STOR functions
 #define P_MOVE_N 0x4020
 #define P_MOVE_NW 0x4021
 #define P_MOVE_W 0x4022
