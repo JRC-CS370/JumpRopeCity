@@ -167,6 +167,9 @@ int main(int argc, char** argv)
     return 0;
 }
 
+//TODO split the miniAt functions to a seperate file
+//Should be trivial
+
 static void miniat_start(int argc, char *argv[]) {
 
     signal(SIGINT, signal_handler);
@@ -199,8 +202,11 @@ static void miniat_start(int argc, char *argv[]) {
 
         miniat_clock(m);
         peripherals_clock(m);
-        //We don't currently have any ports only peripherals
-        //ports_clock(m);
+        /*Didnt use ports explained in the above function
+        *
+        *ports_clock(m);
+        *
+        *It will be used later through*/
     }
 
     return;
@@ -227,8 +233,11 @@ static void cleanup() {
      * Call all the other cleanup functions
      */
     peripherals_cleanup();
-    //Didnt use ports explained in the above function
-    //ports_cleanup();
+    /*Didnt use ports explained in the above function
+    *
+    *ports_cleanup();
+    *
+    *It will be used later through*/
 
     if(cycles < MAX_CYCLES) {
         printf("\n%"PRIu64" cycles executed\n", cycles);
@@ -256,6 +265,10 @@ static void print_usage() {
 }
 
 
+/*
+    Fair warning this function is still a mess. Deals with parsing of
+    the inputed assembly file.
+*/
 static void parse_options(int argc, char *argv[]) {
 
     std::cout << "reached parse_options function" << std::endl;
@@ -265,18 +278,18 @@ static void parse_options(int argc, char *argv[]) {
     }
 
     std::cout << "read in the file name a-ok" << std::endl;
-    //std::cout << (EXECUTABLE) << argv[1] << std::endl;
 
+    //Reads in the file name concatinate it to EXECUTABLE from the scons script
+    //This also adds a / character between the contents of EXECUTABLE and argv
     std::string tempFileName = std::string(EXECUTABLE) + "/" + std::string(argv[1]);
-    std::cout << tempFileName << std::endl;
-    //input_filename = (tempFileName).c_str();
 
-    std::cout << "Starting to strcpy" << std::endl;
+    //Creates a new charArray the size of the file path + 1 for saftey
     char *writable = new char[tempFileName.size() + 1];
-    std::copy(tempFileName.begin(), tempFileName.end(), writable);
-    std::cout << "Ending strcpy" << std::endl;
-    std::cout << "Copy to input_filename";
 
+    //Copys the contents of tempFile to the writable charArray
+    std::copy(tempFileName.begin(), tempFileName.end(), writable);
+
+    //Copys one more time from writable to input_filename which is a global variable
     input_filename = writable;
     return;
 }
