@@ -4,8 +4,8 @@
 #ifndef PERIPHERALS_H
 #define PERIPHERALS_H
 
-void peripherals_cleanup()
-{
+void peripherals_cleanup();
+
     /*
     This function will deal with the cleanup and removal of data from 
     the peripherals.
@@ -13,10 +13,10 @@ void peripherals_cleanup()
     Arguments: nothing
     Returns: nothing
     */
-}
 
-void peripherals_clock(miniat *m)
-{
+
+void peripherals_clock(miniat *m);
+
     /*
     Peripherals_clock deals with everything to do with the peripherals. It
     deals with the STORing and LOADing from the peripheral pins.
@@ -24,6 +24,6 @@ void peripherals_clock(miniat *m)
     Arguments: miniat *m
     Returns: nothing
     */
-}
+
 
 #endif
