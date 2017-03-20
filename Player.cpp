@@ -7,27 +7,68 @@
 #include "Player.h"
 #include "Define.h"
 
-
-Player::Player(SDL_Window *window)
+Player::Player()
 {
-	SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
-    SDL_Rect player = {0, 0, 30, 30};
-    for(int i = 0; i < 5; i++)
-    {
-        for(int j = 0; j < 5; j++)
-        {
-            //Player Grid could go here
-        }
-    }
-    
-    int xCur = 2;
-    int yCur = 2;
-}
+	playerPosition.x = 100;
+	playerPosition.y = 100;
+	playerHeight = 30;
+	playerWidth = 30;
 
+	//Creates the actual player rectangle
+	player.x = playerPosition.x;
+	player.y = playerPosition.y;
+	player.w = playerWidth;
+	player.h = playerHeight;
+
+}//end of Player function
+
+//This function creates the renderer and displays the actual player
+void Player::renderP(SDL_Renderer *renderer)//x and y coordinates
+{
+	SDL_RenderFillRect(renderer, &player);
+}//end of renderP
+
+
+SDL_Point* Player::getPlayerPosition()
+{
+	return &playerPosition;
+}//end of getPlayerPosition
+
+int Player::getPlayerHeight()
+{
+	return playerHeight;
+}//end of getPlayerHeight
+
+int Player::getPlayerWidth()
+{
+	return playerWidth;
+}//end of getPlayerWidth
+
+
+void Player::setPlayerXCordinate(int playerPositionX)
+{
+	playerPosition.x = playerPositionX;
+}//end of setPlayerXCordinate
+
+void Player::setPlayerYCordinate(int playerPositionY)
+{
+	playerPosition.y = playerPositionY;
+}//end of setPlayerYCordinate
+
+
+
+
+
+
+
+
+/**************************************************************************************
 Player::~Player()
 {
+	free();
+}//end of ~Player
 
-}
+
 
 void Player::keyMovement(int keyStroke)
 {
@@ -47,5 +88,6 @@ void Player::keyMovement(int keyStroke)
             break;
         default:
             break;
-    }
-}
+    }//end of switch
+}//end of keyMovement
+****************************************************************************************/

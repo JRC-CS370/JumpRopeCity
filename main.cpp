@@ -10,7 +10,7 @@
 
 #define total 5
 
-int main(int argc, char** argv)
+int main(int argc, char **argv)
 {
 
     SDL_Window *window = NULL;
@@ -41,15 +41,21 @@ int main(int argc, char** argv)
     int yPos = 100;
     int makeRope = 0;
 
+
+    int playerPositionX = 0;
+    int playerPositionY = 0;
+
+
+
     for(int y = 0; y < total; y++)
     {
-	for(int x = 0; x < total; x++)
+	     for(int x = 0; x < total; x++)
     	{
     	    makeRope = rand() % 3;
+          xPos+=125;
 
             if(makeRope == 0)
             {
-                xPos+=125;
 
                 //Sets the x,y position of the rope
                 ropes[y][x].setMidPointX(xPos);
@@ -75,7 +81,12 @@ int main(int argc, char** argv)
     //player rect for testing.
     //SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
     //SDL_Rect player = {0, 0, 30, 30};
-    Player newCharacter = Player(window);
+
+    //_______________________________________________________________________________________________________________________________
+    //Creates a new instance of the structure Player in the class Player.h/Player.cpp
+    Player player;
+    //_______________________________________________________________________________________________________________________________
+
 
     while(running)
     {
@@ -86,6 +97,9 @@ int main(int argc, char** argv)
             case SDL_QUIT:
                 running = false;
                 break;
+
+
+            /**************************************************************************************************************************
 
             //move the player
             //unsure how to do diagonal
@@ -107,6 +121,8 @@ int main(int argc, char** argv)
                 }
                 break;
 
+              **********************************************************************************************************************/
+
             default:
                 break;
 
@@ -119,17 +135,19 @@ int main(int argc, char** argv)
 
         //draws a rectangle
         SDL_SetRenderDrawColor(renderer, 255, 0, 0, 255);
- 
+
        //renders ropes to screen
         for(int y = 0; y < total; y++)
-	{
+	      {
              for(int x = 0; x < total; x++)
              {
                   ropes[y][x].render(ropes[y][x].getMidPoint()->x, ropes[y][x].getMidPoint()->y, NULL, renderer, ropes[y][x].getAngle(), NULL, SDL_FLIP_NONE);
              }
         }
-        //SDL_RenderFillRect(renderer, &player);
-        //newCharacter.renderPlayer(renderer);
+
+
+        player.renderP(renderer);
+
 
         //outputs the renderer
         SDL_RenderPresent(renderer);

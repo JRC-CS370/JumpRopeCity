@@ -11,21 +11,39 @@ class Player
 {
 	public:
 
-		//Player creation
-		Player(SDL_Window *window);
+		//Used for Initializing variables
+		Player();
 
-		//Player Deletion
-		~Player();
+		//Deallocates memory
+		//virtual ~Player();
 
-		void keyMovement(int keyStroke);
+		//Renders the actual player on the window
+		void renderP(SDL_Renderer *renderer);
+
+		//Gets the location of the player
+		SDL_Point* getPlayerPosition();
+
+		//Sets the x and y positions of the player
+		void setPlayerXCordinate(int playerPositionX);
+		void setPlayerYCordinate(int playerPositionY);
+
+		//This creates get functions for the players height and width
+		int getPlayerHeight();
+		int getPlayerWidth();
+
+
+
+		//void keyMovement(int keyStroke);
 
 		//void renderPlayer(SDL_Renderer *renderer);
 
 	private:
-		int x; //X coordinate for player
-		int y; //Y coordinate for player
+		//contains the x and y coordinates of the player.
+		SDL_Point playerPosition;
+		SDL_Rect player;
 
-		
+		int playerHeight; //Height of the player
+		int playerWidth; //Width of the player
 };
 
 #endif
