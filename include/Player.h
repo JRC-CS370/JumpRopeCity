@@ -35,8 +35,6 @@ class Player
 
 		//void keyMovement(int keyStroke);
 
-		//void renderPlayer(SDL_Renderer *renderer);
-
 	private:
 		//contains the x and y coordinates of the player.
 		SDL_Point playerPosition;
