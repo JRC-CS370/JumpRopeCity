@@ -49,10 +49,10 @@ int main(int argc, char** argv)
     for(int x = 0; x < total; x++)
     {
       makeRope = rand() % 3;
+      xPos+=125;
 
       if(makeRope == 0)
       {
-        xPos+=125;
 
         ropes[y][x].setMidPointX(xPos);
         ropes[y][x].setMidPointY(yPos);
@@ -70,10 +70,12 @@ int main(int argc, char** argv)
   bool running = true;
   SDL_Event event;
 
+/*
+  //OLD
   //player rect for testing.
   SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
   SDL_Rect player = {0, 0, 30, 30};
-
+*/
 
   while(running)
   {
@@ -84,7 +86,8 @@ int main(int argc, char** argv)
       case SDL_QUIT:
       running = false;
       break;
-
+/*
+      //OLD
       //move the player
       //unsure how to do diagonal
       case SDL_KEYDOWN:
@@ -104,7 +107,7 @@ int main(int argc, char** argv)
         break;
       }
       break;
-
+*/
       default:
       break;
 
@@ -127,7 +130,8 @@ int main(int argc, char** argv)
       }//end of for loop
     }//end of for loop
 
-    SDL_RenderFillRect(renderer, &player);
+    //OLD - Displays the rectangle
+    //SDL_RenderFillRect(renderer, &player);
 
 
     //outputs the renderer
