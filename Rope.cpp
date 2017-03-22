@@ -55,9 +55,8 @@ void Rope::free()
     mTexture = NULL;
     mWidth = 0;
     mHeight = 0;
-  }
-
-}
+  }//end of if statement
+}//end of Void Rope::free()
 
 void Rope::render(int x, int y, SDL_Rect* rect, SDL_Renderer* renderer, double angle, SDL_Point* center, SDL_RendererFlip flip)
 {
@@ -128,7 +127,6 @@ void Rope::setAngle(int newAngle)
 
   setPointA(angle);
   setPointB(angle);
-
 }
 
 void Rope::setPointA(int angle)
