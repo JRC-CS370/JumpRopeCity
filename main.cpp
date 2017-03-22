@@ -8,11 +8,11 @@
 #include "Define.h"
 #include "Player.h"
 
+//Whenever it says total the value is 5
 #define total 5
 
 int main(int argc, char **argv)
 {
-
   SDL_Window *window = NULL;
   SDL_Renderer *renderer = NULL;
   SDL_Texture *texture = NULL;
@@ -39,7 +39,7 @@ int main(int argc, char **argv)
   //create an array of ropes
   Rope ropes[5][5];
 
-  //angle of the rope
+  //angle of the rope variables
   int angle = 0;
   int xPos = 0;
   int yPos = 100;
@@ -61,23 +61,20 @@ int main(int argc, char **argv)
         ropes[y][x].setAngle(angle);
         ropes[y][x].setTexture("/images/Rope.png", renderer);
       }//end of if statement
-    }//end of for loop
+    }//end of for loop x
     yPos += 125;
     xPos = 0;
-  }//end of for loop
+  }//end of for loop y
 
 
   //running game
   bool running = true;
   SDL_Event event;
 
+  //Creates an instance of the player.
   Player player;
-/*
-  //OLD
-  //player rect for testing.
-  SDL_Renderer* rectRender = SDL_CreateRenderer(window, -1, SDL_RENDERER_TARGETTEXTURE);
-  SDL_Rect player = {0, 0, 30, 30};
-*/
+
+    //While loop for while the program while it's running.
     while(running)
     {
         SDL_PollEvent(&event);
@@ -90,8 +87,7 @@ int main(int argc, char **argv)
 
 
             /**************************************************************************************************************************
-
-            //move the player
+            //OLD CODE moves the player from key input
             //unsure how to do diagonal
             case SDL_KEYDOWN:
                 switch(event.key.keysym.sym)
@@ -110,13 +106,11 @@ int main(int argc, char **argv)
                         break;
                 }
                 break;
-
               **********************************************************************************************************************/
-
             default:
                 break;
+        }//end of the switch statement
 
-        }
         //makes window background not black
         SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);
 
@@ -132,25 +126,25 @@ int main(int argc, char **argv)
              for(int x = 0; x < total; x++)
              {
                   ropes[y][x].render(ropes[y][x].getMidPoint()->x, ropes[y][x].getMidPoint()->y, NULL, renderer, ropes[y][x].getAngle(), NULL, SDL_FLIP_NONE);
-             }
-        }
+             }//end of for loop with x
+        }//end of for loop with y
 
-
+        //RENDERS the actual Player player; instance of the player class to the window
         player.renderP(renderer);
-
 
         //outputs the renderer
         SDL_RenderPresent(renderer);
 
         //restricts to 60fps
         SDL_Delay(1000/60);
-    }
+    }//End of while running loop.
 
+  //Closes out the window, renderer, and the texture after the program is completed.
   SDL_DestroyWindow(window);
   SDL_DestroyRenderer(renderer);
   SDL_DestroyTexture(texture);
-
+  //Quits things.
   SDL_Quit();
 
   return 0;
-}
+}//end of the main method
