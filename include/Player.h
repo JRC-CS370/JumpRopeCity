@@ -11,19 +11,37 @@ class Player
 {
 	public:
 
-		//Player creation
+		//Used for Initializing variables
 		Player();
 
-		//Player Deletion
-		~Player();
+		//Deallocates memory
+		//virtual ~Player();
+
+		//Renders the actual player on the window
+		void renderP(SDL_Renderer *renderer);
+
+		//Gets the location of the player
+		SDL_Point* getPlayerPosition();
+
+		//Sets the x and y positions of the player
+		void setPlayerXCordinate(int playerPositionX);
+		void setPlayerYCordinate(int playerPositionY);
+
+		//This creates get functions for the players height and width
+		int getPlayerHeight();
+		int getPlayerWidth();
+
+
+
+		//void keyMovement(int keyStroke);
+
 	private:
-		int mCompass; //Angle the player wants to go
-		int mDirection; //Angle the player is currently facing 0-360
-		int mThrottle; //Speed they would like to get to
-		int mSpeed; //Speed the player is currently going
-		Coordinate mLocation; //X,Y of the players current location
-		Coordinate mNearRope; //X,Y of the nearest rope
-		
+		//contains the x and y coordinates of the player.
+		SDL_Point playerPosition;
+		SDL_Rect player;
+
+		int playerHeight; //Height of the player
+		int playerWidth; //Width of the player
 };
 
 #endif
