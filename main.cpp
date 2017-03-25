@@ -24,7 +24,7 @@ int main(int argc, char **argv)
 	SDL_Init(SDL_INIT_EVERYTHING);
 
 	//create window 1080x720
-	window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 700, 700, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 750, 750, SDL_WINDOW_SHOWN);
 	if(window == NULL)
 	{
 		std::cout << "window" << SDL_GetError() << std::endl;
