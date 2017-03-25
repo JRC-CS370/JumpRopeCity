@@ -9,7 +9,7 @@ INC = [ '#/vm/inc', '#/peripherals/simple_kb', '#/peripherals/simple_term', '#/s
 LIBS = [ 'libminiat', 'libsimple_kb', 'libsimple_term', 'SDL2', 'SDL2_image' ]
 
 ##Required CPP Files
-CPPFILES = ['main.cpp', 'Rope.cpp', 'Scene.cpp', 'Player.cpp']
+CPPFILES = ['main.cpp', 'Rope.cpp', 'Scene.cpp', 'Player.cpp', 'Map.cpp']
 
 #print "\t\t\t\t\t@@@@@@@", os.getcwd()
 rootdir = os.getcwd()
