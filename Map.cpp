@@ -5,13 +5,16 @@ Map::Map()
 {
 	this->rows = 5;
 	this->cols = 5;
+	
+	rope[rows][cols];
+	player[rows][cols];
 }
 
 
 Map::Map(int rows, int cols)
 {
-	rope[rows * cols];
-	player[rows * cols];
+	rope[rows][cols];
+	player[rows][cols];
 	this->rows = rows;
 	this->cols = cols;
 }
@@ -20,24 +23,12 @@ Map::~Map()
 {
 }
 
-Rope* Map::getRopeMap()
+SDL_Point Map::getPoint(int x, int y)
 {
-	return rope;
-}
-
-Player* Map::getPlayerMap()
-{
-	return player;
-}
-
-SDL_Point Map::getPoint(int position)
-{
-	int newx = position % cols;
-	int newy = position / rows;
 	SDL_Point point;
 
-	point.x = (newx * 125) + 50;
-	point.y = (newy * 125) + 50;
+	point.x = (x * 125) + 50;
+	point.y = (y * 125) + 50;
 
 	return point;
 }
@@ -45,30 +36,32 @@ SDL_Point Map::getPoint(int position)
 
 bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 {
-
 	//if number of ropes is greater than the number of tiles on the map minus player, return false
 	if(numRopes >= (rows*cols)-1)
 		return false;
 	else
 	{
-
-		for(int i = 0; i < rows*cols; i++)
-			rope[i].free();
+		for(int y = 0; y < rows; y++)
+			for(int x = 0; x < cols; x++)
+				rope[y][x].free();
 
 		srand(time(NULL));
-		int randomspot = 0;
+		int randomx = 0;
+		int randomy = 0;
 		int angle = 0;
 
 		while(numRopes > 0)
 		{
-			randomspot = rand() % (rows*cols);
-			if(rope[randomspot].getTexture() == NULL)
+
+			randomx = rand() % cols;
+			randomy = rand() % rows;
+
+			if(rope[randomy][randomx].getTexture() == NULL)
 			{
-				rope[randomspot].setMidPointX(getPoint(randomspot).x);
-				rope[randomspot].setMidPointY(getPoint(randomspot).y);
+				rope[randomy][randomx].setMidPoint(getPoint(randomy, randomx));
 				angle = rand()%2;
-				rope[randomspot].setAngle(angle);
-				rope[randomspot].setTexture("/images/Rope.png", renderer);
+				rope[randomy][randomx].setAngle(angle);
+				rope[randomy][randomx].setTexture("/images/Rope.png", renderer);
 				numRopes--;
 			}
 		}
@@ -78,8 +71,9 @@ bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 
 void Map::displayRope(SDL_Renderer* renderer)
 {
-	for(int i = 0; i < rows*cols; i++)
-		rope[i].render(getPoint(i).x, getPoint(i).y, NULL, renderer, rope[i].getAngle(), NULL, SDL_FLIP_NONE);
+	for(int y = 0; y < rows; y++)
+		for(int x = 0; x < cols; x++)
+		rope[y][x].render(getPoint(x, y).x, getPoint(x, y).y, NULL, renderer, rope[y][x].getAngle(), NULL, SDL_FLIP_NONE);
 }
 
 /*void Map::displayPlayer(SDL_Renderer* renderer)

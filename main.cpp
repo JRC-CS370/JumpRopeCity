@@ -41,16 +41,13 @@ int main(int argc, char **argv)
 	//create a map
 	Map theMap;
 	bool success = theMap.setRopes(10, renderer);
-	if (success)
-		std::cout << "YAY" << std::endl;
-
-
+	if(!success)
+		std::cout<<"Map not created" << std::endl;
 
 
 	//running game
 	bool running = true;
 	SDL_Event event;
-
 
 	while(running)
 	{
@@ -63,7 +60,7 @@ int main(int argc, char **argv)
 				break;
 
 
-			/**************************************************************************************************************************
+	/**************************************************************************************************************************
 
             //move the player
             //unsure how to do diagonal
@@ -103,8 +100,6 @@ int main(int argc, char **argv)
 		//displays ropes to screen
 		theMap.displayRope(renderer);
 
-		//displays the player
-		player.renderP(renderer);
 
 
 		//outputs the renderer

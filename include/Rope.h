@@ -44,8 +44,7 @@ class Rope
 		void setTexture(std::string path, SDL_Renderer* renderer);
 
 		//set point a position
-		void setMidPointX(int newX);
-		void setMidPointY(int newY);
+		void setMidPoint(SDL_Point point);
 
 		//sets angle
 		void setAngle(int newAngle);
