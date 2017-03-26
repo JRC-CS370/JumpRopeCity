@@ -3,12 +3,12 @@
 Map::Map()
 {
 
-}
+}//end of Map::Map
 
 Map::~Map()
 {
 
-}
+}//end of ~Map
 
 Map::setRopes(Rope ropes)
 {
@@ -20,8 +20,8 @@ Map::setRopes(Rope ropes)
 
 			if(makeRope == 0)
 			{
-				
-			}
-		}
-	}
-}
+
+			}//end of if statement
+		}//end of for loop with j
+	}//end of for loop with i
+}//end of Map::setRopes

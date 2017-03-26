@@ -23,7 +23,7 @@ Player::Player()
 }//end of Player function
 
 //This function creates the renderer and displays the actual player
-void Player::renderP(SDL_Renderer *renderer)//x and y coordinates
+void Player::renderP(SDL_Renderer *renderer)
 {
 	SDL_RenderFillRect(renderer, &player);
 }//end of renderP
