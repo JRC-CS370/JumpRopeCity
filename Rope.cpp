@@ -108,14 +108,10 @@ SDL_Texture* Rope::getTexture()
   return mTexture;
 }
 
-void Rope::setMidPointX(int newX)
+void Rope::setMidPoint(SDL_Point point)
 {
-  midpoint.x = newX;
-}
-
-void Rope::setMidPointY(int newY)
-{
-  midpoint.y = newY;
+  midpoint.x = point.x;
+  midpoint.y = point.y;
 }
 
 void Rope::setAngle(int newAngle)
