@@ -14,7 +14,7 @@ class Map
 {
 
 	public:
-	
+
 		//Constructors
 		Map();
 		Map(int rows, int cols);
@@ -28,17 +28,17 @@ class Map
 
 		//sets a number of ropes
 		bool setRopes(int numRopes, SDL_Renderer* renderer);
-		
+
 		//returns a SDL_Point on the screen depending on the spot
 		SDL_Point getPoint(int x, int y);
 
-	
+
 	private:
-		
+
 		//rope and player 2d array
 		Rope rope[5][5];
 		Player player[5][5];
-		
+
 		//2d array dimensions
 		int rows;
 		int cols;

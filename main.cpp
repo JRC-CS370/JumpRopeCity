@@ -40,10 +40,17 @@ int main(int argc, char **argv)
 
 	//create a map
 	Map theMap;
-	bool success = theMap.setRopes(10, renderer);
+	bool success = theMap.setRopes(20, renderer);
 	if(!success)
 		std::cout<<"Map not created" << std::endl;
 
+		//Creates an instance of the class player
+		Player player;
+		//Creates the map at which the player can move across
+		player.createPlayerMap();
+
+		player.setPlayerXCordinate(4);
+		player.setPlayerYCordinate(3);
 
 	//running game
 	bool running = true;
@@ -99,7 +106,8 @@ int main(int argc, char **argv)
 		//displays ropes to screen
 		theMap.displayRope(renderer);
 
-
+		//Displays the actual player to the window
+		player.renderP(renderer);
 
 		//outputs the renderer
 		SDL_RenderPresent(renderer);

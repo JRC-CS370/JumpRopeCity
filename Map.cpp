@@ -6,14 +6,12 @@ Map::Map()
 	this->rows = 5;
 	this->cols = 5;
 
-	rope[rows][cols];
-	player[rows][cols];
 }
 
 Map::Map(int rows, int cols)
 {
-	rope[rows][cols];
-	player[rows][cols];
+	//rope[rows][cols];
+	//player[rows][cols];
 	this->rows = rows;
 	this->cols = cols;
 }
@@ -22,7 +20,7 @@ Map::~Map()
 {
 }
 
-SDL_Point Map::getPoint(int x, int y)
+SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid not the game window
 {
 	SDL_Point point;
 
@@ -57,7 +55,7 @@ bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 
 			if(rope[randomy][randomx].getTexture() == NULL)
 			{
-				rope[randomy][randomx].setMidPoint(getPoint(randomy, randomx));
+				rope[randomy][randomx].setMidPoint(getPoint(randomy, randomx));	//sets the ropes
 				angle = rand()%2;
 				rope[randomy][randomx].setAngle(angle);
 				rope[randomy][randomx].setTexture("/images/Rope.png", renderer);
