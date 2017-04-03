@@ -24,7 +24,6 @@ class Map
 
 		//displays map
 		void displayRope(SDL_Renderer* renderer);
-		//void displayPlayer(SDL_Renderer* renderer);
 
 		//sets a number of ropes
 		bool setRopes(int numRopes, SDL_Renderer* renderer);

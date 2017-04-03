@@ -31,9 +31,6 @@ class Rope
 
 		//gets start point on screen
 		SDL_Point* getMidPoint();
-		//These are not needed anymore
-		//SDL_Point* getPointA();
-		//SDL_Point* getPointB();
 
 		//gets angle
 		int getAngle();
@@ -61,17 +58,10 @@ class Rope
 
 		//position on the map
 		SDL_Point midpoint;
-		//These are not needed anymore
-		//SDL_Point pointA;
-		//SDL_Point pointB;
 
 		//angle it is
 		//can be 0-180
 		int angle;
-
-		//These are not needed anymore
-		//void setPointA(int angle);
-		//void setPointB(int angle);
 };
 
 #endif /* ROPE_H */

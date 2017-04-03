@@ -72,9 +72,3 @@ void Map::displayRope(SDL_Renderer* renderer)
 		for(int x = 0; x < cols; x++)
 		rope[y][x].render(getPoint(x, y).x, getPoint(x, y).y, NULL, renderer, rope[y][x].getAngle(), NULL, SDL_FLIP_NONE);
 }
-
-/*void Map::displayPlayer(SDL_Renderer* renderer)
-{
-	for(int i = 0; i < rows*cols; i++)
-		player[i].render(getPoint(i).x, getPoint(i).y, NULL, renderer, player[i].getAngle(), NULL, SDL_FLIP_NONE);
-}*/

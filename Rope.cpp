@@ -11,14 +11,6 @@ Rope::Rope()
   midpoint.x = 0;
   midpoint.y = 0;
 
-  //Not needed
-  //pointA.x = 0;
-  //pointA.y = 0;
-
-  //Not needed
-  //pointB.x = 0;
-  //pointB.y = 0;
-
   angle = 0;
 }
 
@@ -91,18 +83,6 @@ SDL_Point* Rope::getMidPoint()
   return &midpoint;
 }
 
-//Not needed
-/*
-SDL_Point* Rope::getPointA()
-{
-  return &pointA;
-}
-SDL_Point* Rope::getPointB()
-{
-  return &pointB;
-}
-*/
-
 int Rope::getAngle()
 {
   return angle;
@@ -125,23 +105,4 @@ void Rope::setAngle(int newAngle)
   angle = 0;
   else
   angle = 90;
-
-  //Not needed anymore
-  //setPointA(angle);
-  //setPointB(angle);
 }
-
-//Not needed anymore
-/*
-void Rope::setPointA(int angle)
-{
-  pointA.x = midpoint.x + (cos(angle * (PI/180)) * mWidth/2);
-  pointA.y = midpoint.y + (sin(angle * (PI/180)) * mWidth/2);
-}
-
-void Rope::setPointB(int angle)
-{
-  pointB.x = midpoint.x - (cos(angle * (PI/180)) * mWidth/2);
-  pointB.y = midpoint.y - (sin(angle * (PI/180)) * mWidth/2);
-}
-*/
