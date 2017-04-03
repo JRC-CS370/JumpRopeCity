@@ -49,7 +49,8 @@ int main(int argc, char **argv)
 	//sets the location of the player to be at (0,0) on the player map
 	player.setPlayerXCordinate(0);
 	player.setPlayerYCordinate(0);
-
+	//Boolean value for keyboard input to register one press
+	bool keypress = false;
 	//running game
 	bool running = true;
 	SDL_Event event;
@@ -65,8 +66,10 @@ int main(int argc, char **argv)
 				running = false;
 				break;
 			case SDL_KEYDOWN:
-				//Calls the playerMotion function in Player.cpp and sends the event to detect player motion
-				player.playerMotion(&event);
+				if(!keypress)
+				{
+					player.playerMotion(&event);
+				}//end of if statement
 			default:
 				//Default case simply breaks out of the switch statement
 				break;

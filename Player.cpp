@@ -42,14 +42,36 @@ int Player::getPlayerWidth()
 //This function sets the players x coordinate on the playerMap 2D array
 void Player::setPlayerXCordinate(int playerX)
 {
-	this->playerX = playerX;
-	player.x = playerMap[playerY][playerX].x;
+	if (playerX > 4)
+	{
+		playerX = 4;
+	}//end of if statement
+	else if (playerX < 0)
+	{
+		playerX = 0;
+	}//end of else if statement
+	else
+	{
+		this->playerX = playerX;
+		player.x = playerMap[playerY][playerX].x;
+	}//end of else statement
 }//end of setPlayerXCordinate
 //This function sets the player y coordinate on the playerMap 2D array
 void Player::setPlayerYCordinate(int playerY)
 {
-	this->playerY = playerY;
-	player.y = playerMap[playerY][playerX].y;
+	if (playerY > 4)
+	{
+		playerY = 4;
+	}//end of if statement
+	else if (playerY < 0)
+	{
+		playerY = 0;
+	}//end of else if
+	else
+	{
+		this->playerY = playerY;
+		player.y = playerMap[playerY][playerX].y;
+	}//end of else
 }//end of setPlayerYCordinate
 //This function creates the player map
 void Player::createPlayerMap()
@@ -74,22 +96,26 @@ void Player::playerMotion(SDL_Event *event)
 			//Deals with Up motion and calls the function movePlayerUp()
 			case SDLK_UP:
 			movePlayerUp();
-			std::cout<<"UP" <<std::endl;
+			//Testing purposes
+			std::cout<<"UP "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
 			break;
 			//Deals with Down motion and calls the function movePlayerDown()
 			case SDLK_DOWN:
 			movePlayerDown();
-			std::cout<<"DOWN"<<std::endl;
+			//Testing purposes
+			std::cout<<"DOWN "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
 			break;
 			//Deals with Left motion and calls the function movePlayerLeft()
 			case SDLK_LEFT:
 			movePlayerLeft();
-			std::cout<<"LEFT"<<std::endl;
+			//Testing purposes
+			std::cout<<"LEFT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
 			break;
 			//Deals with Right motion and calls the function movePlayerRight()
 			case SDLK_RIGHT:
 			movePlayerRight();
-			std::cout<<"RIGHT"<<std::endl;
+			//Testing purposes
+			std::cout<<"RIGHT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
 			break;
 			//Default case set to no value and breaks the switch statement
 			default:
@@ -99,26 +125,22 @@ void Player::playerMotion(SDL_Event *event)
 //Function to increment player.y and calls setPlayerYCordinate
 void Player::movePlayerUp()
 {
-	player.y = player.y - 1;
-	setPlayerYCordinate(player.y);
+		setPlayerYCordinate(playerY - 1);
 }//end of movePlayerUp
 //Function to increment player.y and calls setPlayerYCordinate
 void Player::movePlayerDown()
 {
-	player.y = player.y + 1;
-	setPlayerYCordinate(player.y);
+		setPlayerYCordinate(playerY + 1);
 }//end of Player::movePlayerDown
 //Function to increment player.x and calls setPlayerXCordinate
 void Player::movePlayerLeft()
 {
-	player.x = player.x - 1;
-	setPlayerXCordinate(player.x);
+		setPlayerXCordinate(playerX - 1);
 }//end of Player::movePlayerLeft
 //Function to increment player.x and calls setPlayerXCordinate
 void Player::movePlayerRight()
 {
-	player.x = player.x + 1;
-	setPlayerXCordinate(player.x);
+		setPlayerXCordinate(playerX + 1);
 }//end of movePlayerRight
 
 
