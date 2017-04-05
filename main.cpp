@@ -66,11 +66,11 @@ int main(int argc, char **argv)
 				running = false;
 				break;
 			case SDL_KEYDOWN:
-				if(!keypress)
+				if(!keypress) // if the keypress is false
 				{
 					keypress = true;
 					player.playerMotion(&event);
-				}
+				}//end of if statement
 				break;
 			case SDL_KEYUP:
 				keypress = false;
