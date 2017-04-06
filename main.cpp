@@ -69,7 +69,7 @@ int main(int argc, char **argv)
 				if(!keypress) // if the keypress is false
 				{
 					keypress = true;
-					player.playerMotion(&event);
+					player.playerMotion(&event); // Calls the playerMotion function in the Player.cpp class
 				}//end of if statement
 				break;
 			case SDL_KEYUP:

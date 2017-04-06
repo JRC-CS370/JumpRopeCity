@@ -10,8 +10,8 @@
 Player::Player()
 {
 	//Makes the players height and width values
-	playerHeight = 30;
-	playerWidth = 30;
+	playerHeight = 120;
+	playerWidth = 100;
 	//Sets the point of the player to 0,0 by default
 	playerX = 0;
 	playerY = 0;
@@ -82,7 +82,7 @@ void Player::createPlayerMap()
 			{
 				//Starts the top left corner of the playerMap at (50,50) Also spaces the x and y coordinates apart by a measure of 125
 				playerMap[y][x].x = (x*125) + 50;
-				playerMap[y][x].y = (y*125) + 50;
+				playerMap[y][x].y = (y*125) + 0;
 				//for testing
 				std::cout<<"x= " << playerMap[y][x].x << std::endl; //Delete this code eventually
 				std::cout<<"y= " << playerMap[y][x].y << std::endl; //Delete this code eventually
