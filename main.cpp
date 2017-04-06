@@ -80,7 +80,7 @@ int main(int argc, char **argv)
 				break;
 		}//end of the switch case
 		//makes window background not black
-		SDL_SetRenderDrawColor(renderer, 242, 242, 242, 255);
+		SDL_SetRenderDrawColor(renderer, 200, 242, 242, 255);
 		//resets the renderer
 		SDL_RenderClear(renderer);
 		//displays the ropes existing within theMap instance of the Map class using the .displayRope function in the Map.cpp file
