@@ -8,64 +8,148 @@
 
 Player::Player()
 {
-	playerPosition.x = 100;
-	playerPosition.y = 100;
-	playerHeight = 30;
-	playerWidth = 30;
-
+	//Makes the players height and width values
+	playerHeight = 120;
+	playerWidth = 100;
+	//Sets the point of the player to 0,0 by default
+	playerX = 0;
+	playerY = 0;
 	//Creates the actual player rectangle
-	player.x = playerPosition.x;
-	player.y = playerPosition.y;
+	player.x = playerMap[0][0].x;
+	player.y = playerMap[0][0].y;
 	player.w = playerWidth;
 	player.h = playerHeight;
-
+	//Makes the value of the playerRows and playerCols to be 5
+	this->playerRows = 5;
+	this->playerCols = 5;
 }//end of Player function
-
 //This function creates the renderer and displays the actual player
-void Player::renderP(SDL_Renderer *renderer)//x and y coordinates
+void Player::renderP(SDL_Renderer *renderer)
 {
 	SDL_RenderFillRect(renderer, &player);
 }//end of renderP
-
-
-SDL_Point* Player::getPlayerPosition()
-{
-	return &playerPosition;
-}//end of getPlayerPosition
-
+//This function gets the players height
 int Player::getPlayerHeight()
 {
 	return playerHeight;
 }//end of getPlayerHeight
-
+//This function gets the players width
 int Player::getPlayerWidth()
 {
 	return playerWidth;
 }//end of getPlayerWidth
-
-
-void Player::setPlayerXCordinate(int playerPositionX)
+//This function sets the players x coordinate on the playerMap 2D array
+void Player::setPlayerXCordinate(int playerX)
 {
-	playerPosition.x = playerPositionX;
+	if (playerX > 4)
+	{
+		playerX = 4;
+	}//end of if statement
+	else if (playerX < 0)
+	{
+		playerX = 0;
+	}//end of else if statement
+	else
+	{
+		this->playerX = playerX;
+		player.x = playerMap[playerY][playerX].x;
+	}//end of else statement
 }//end of setPlayerXCordinate
-
-void Player::setPlayerYCordinate(int playerPositionY)
+//This function sets the player y coordinate on the playerMap 2D array
+void Player::setPlayerYCordinate(int playerY)
 {
-	playerPosition.y = playerPositionY;
+	if (playerY > 4)
+	{
+		playerY = 4;
+	}//end of if statement
+	else if (playerY < 0)
+	{
+		playerY = 0;
+	}//end of else if
+	else
+	{
+		this->playerY = playerY;
+		player.y = playerMap[playerY][playerX].y;
+	}//end of else
 }//end of setPlayerYCordinate
+//This function creates the player map
+void Player::createPlayerMap()
+{
+		for (int y=0; y < playerRows; y++)
+		{
+			for (int x=0; x < playerCols; x++)
+			{
+				//Starts the top left corner of the playerMap at (50,50) Also spaces the x and y coordinates apart by a measure of 125
+				playerMap[y][x].x = (x*125) + 50;
+				playerMap[y][x].y = (y*125) + 0;
+				//for testing
+				std::cout<<"x= " << playerMap[y][x].x << std::endl; //Delete this code eventually
+				std::cout<<"y= " << playerMap[y][x].y << std::endl; //Delete this code eventually
+			}//end of for loop with y
+		}//end of for loop with x
+}//end of createPlayerMap
+void Player::playerMotion(SDL_Event *event)
+{
+		switch(event->key.keysym.sym)
+		{
+			//Deals with Up motion and calls the function movePlayerUp()
+			case SDLK_UP:
+			movePlayerUp();
+			//Testing purposes
+			std::cout<<"UP "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			break;
+			//Deals with Down motion and calls the function movePlayerDown()
+			case SDLK_DOWN:
+			movePlayerDown();
+			//Testing purposes
+			std::cout<<"DOWN "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			break;
+			//Deals with Left motion and calls the function movePlayerLeft()
+			case SDLK_LEFT:
+			movePlayerLeft();
+			//Testing purposes
+			std::cout<<"LEFT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			break;
+			//Deals with Right motion and calls the function movePlayerRight()
+			case SDLK_RIGHT:
+			movePlayerRight();
+			//Testing purposes
+			std::cout<<"RIGHT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			break;
+			//Default case set to no value and breaks the switch statement
+			default:
+			break;
+		}//end of switch case
+}//end of Player::playerMotion function
+//Function to increment player.y and calls setPlayerYCordinate
+void Player::movePlayerUp()
+{
+		setPlayerYCordinate(playerY - 1);
+}//end of movePlayerUp
+//Function to increment player.y and calls setPlayerYCordinate
+void Player::movePlayerDown()
+{
+		setPlayerYCordinate(playerY + 1);
+}//end of Player::movePlayerDown
+//Function to increment player.x and calls setPlayerXCordinate
+void Player::movePlayerLeft()
+{
+		setPlayerXCordinate(playerX - 1);
+}//end of Player::movePlayerLeft
+//Function to increment player.x and calls setPlayerXCordinate
+void Player::movePlayerRight()
+{
+		setPlayerXCordinate(playerX + 1);
+}//end of movePlayerRight
 
 
 
-
-
-
-
-
-/**************************************************************************************
+/*
 Player::~Player()
 {
 	free();
 }//end of ~Player
+<<<<<<< HEAD
 
 
 
