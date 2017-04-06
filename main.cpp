@@ -95,10 +95,11 @@ int main(int argc, char **argv)
 		SDL_Delay(1000/60);
 	}
 
+	//Closes out the window, renderer, and the texture
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
 	SDL_DestroyTexture(texture);
-	SDL_Quit();
+	SDL_Quit(); //Quits SDL
 
 	return 0;
 }
