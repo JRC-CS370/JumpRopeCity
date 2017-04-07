@@ -33,6 +33,14 @@ class Player
 		void movePlayerLeft();
 		//Fuction that moves the player RIGHT on the SDL_Point playerMap[5][5]
 		void movePlayerRight();
+		//Function for MiniAT integration: moves the player DOWN then RIGHT
+		void movePlayerSouthEast();
+		//Function for MiniAT integration: moves the player DOWN then LEFT
+		void movePlayerSouthWest();
+		//Function for MiniAT integration: moves the player UP then RIGHT
+		void movePlayerNorthEast();
+		//Function for MiniAT integration: moves the player UP then LEFT
+		void movePlayerNorthWest();
 
 	private:
 		SDL_Rect player; //Creates a rectangle to display as the actual player
