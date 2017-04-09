@@ -96,25 +96,25 @@ void Player::playerMotion(SDL_Event *event)
 			case SDLK_UP:
 			movePlayerUp();
 			//Testing purposes
-			std::cout<<"UP "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"UP "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 			break;
 			//Deals with Down motion and calls the function movePlayerDown()
 			case SDLK_DOWN:
 			movePlayerDown();
 			//Testing purposes
-			std::cout<<"DOWN "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"DOWN "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 			break;
 			//Deals with Left motion and calls the function movePlayerLeft()
 			case SDLK_LEFT:
 			movePlayerLeft();
 			//Testing purposes
-			std::cout<<"LEFT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"LEFT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 			break;
 			//Deals with Right motion and calls the function movePlayerRight()
 			case SDLK_RIGHT:
 			movePlayerRight();
 			//Testing purposes
-			std::cout<<"RIGHT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"RIGHT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 			break;
 			//Default case set to no value and breaks the switch statement
 			default:
@@ -124,23 +124,47 @@ void Player::playerMotion(SDL_Event *event)
 //Function to increment player.y and calls setPlayerYCordinate
 void Player::movePlayerUp()
 {
-		setPlayerYCordinate(playerY - 1);
+	setPlayerYCordinate(playerY - 1);
 }//end of movePlayerUp
 //Function to increment player.y and calls setPlayerYCordinate
 void Player::movePlayerDown()
 {
-		setPlayerYCordinate(playerY + 1);
+	setPlayerYCordinate(playerY + 1);
 }//end of Player::movePlayerDown
 //Function to increment player.x and calls setPlayerXCordinate
 void Player::movePlayerLeft()
 {
-		setPlayerXCordinate(playerX - 1);
+	setPlayerXCordinate(playerX - 1);
 }//end of Player::movePlayerLeft
 //Function to increment player.x and calls setPlayerXCordinate
 void Player::movePlayerRight()
 {
-		setPlayerXCordinate(playerX + 1);
+	setPlayerXCordinate(playerX + 1);
 }//end of movePlayerRight
+//Function for MiniAT integration: moves the player DOWN then RIGHT
+void Player::movePlayerSouthEast()
+{
+	setPlayerYCordinate(playerY + 1);
+	setPlayerXCordinate(playerX + 1);
+}//end of movePlayerSouthEast()
+//Function for MiniAT integration: moves the player DOWN then LEFT
+void Player::movePlayerSouthWest()
+{
+	setPlayerYCordinate(playerY + 1);
+	setPlayerXCordinate(playerX - 1);
+}//end of movePlayerSouthWest()
+//Function for MiniAT integration: moves the player UP then RIGHT
+void Player::movePlayerNorthEast()
+{
+	setPlayerYCordinate(playerY - 1);
+	setPlayerXCordinate(playerX + 1);
+}//end of the movePlayerNorthEast
+//Function for MiniAT integration: moves the player UP then LEFT
+void Player::movePlayerNorthWest()
+{
+	setPlayerYCordinate(playerY - 1);
+	setPlayerXCordinate(playerX - 1);
+}//end of the movePlayerNorthWest()
 
 
 
