@@ -37,10 +37,22 @@ static void print_usage();
 //Might not need this one
 static void signal_handler(int sig);
 
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
+{
+	try {
+		miniat_start(argc, argv);
+	}
+		catch(...) {
+		miniat_dump_error();
+	}
+
+	return EXIT_SUCCESS;
+}
+
+int main_start(int argc, char **argv)
 {
 
-    miniat_start(argc, argv);
+    //miniat_start(argc, argv);
 	//Creates global variables for the window, renderer, and texture
 	SDL_Window *window = NULL;
 	SDL_Renderer *renderer = NULL;
@@ -118,6 +130,14 @@ int main(int argc, char **argv)
 		player.renderP(renderer);
 		//outputs the renderer
 		SDL_RenderPresent(renderer);
+
+		if(cycles < MAX_CYCLES)
+		{
+			cycles++;
+		}
+
+		miniat_clock(m);
+		peripherals_clock(m);
 		//restricts to 60fps
 		SDL_Delay(1000/60);
 	}
@@ -156,22 +176,24 @@ static void miniat_start(int argc, char *argv[]) {
     //SENDS BINARY FILE, CREATES INSTANCE OF MINIAT
     m = miniat_new(infile, NULL);
     std::cout << "Created a new instance of MiniAT" << std::endl;
+    main_start(argc, argv);
+
 
     //FOREVER
-    for(;;) {
+    /*for(;;) {
         //CLOCK CYCLE
         if(cycles < MAX_CYCLES) {
             cycles++;
         }
-
-        miniat_clock(m);
-        peripherals_clock(m);
+	*/
+    //    miniat_clock(m);
+     //   peripherals_clock(m);
         /*Didnt use ports explained in the above function
         *
         *ports_clock(m);
         *
         *It will be used later through*/
-    }
+    //}
 
     return;
 }
