@@ -27,23 +27,17 @@ Player::Player()
 	this->playerRows = 5;
 	this->playerCols = 5;
 
+	playerTexture = NULL;
 }//end of Player function
 
 //This function displays the actual player
 void Player::display(SDL_Renderer *renderer)
 {
 	//Set renderin space and render to screen
-	SDL_Rect renderQuad = {x, y, mWidth, mHeight};
-
-	//Set rect rendering dimensions
-	if(rect != NULL)
-	{
-		renderQuad.w = rect->w;
-		renderQuad.h = rect->h;
-	}//end of if statement
+	SDL_Rect renderQuad = {player.x, player.y, 100, 100};
 
 	//render to screen
-
+	SDL_RenderCopy(renderer, playerTexture, NULL, &renderQuad);
 }//end of display
 
 //This function gets the players height
@@ -103,8 +97,8 @@ void Player::setPlayerYCordinate(int playerY)
 //This function sets the image to the player
 void Player::setTexture(std::string path, SDL_Renderer* renderer)
 {
-	if(mTexture != NULL)
-		SDL_DestroyTexture(mTexture);
+	if(playerTexture != NULL)
+		SDL_DestroyTexture(playerTexture);
 
 	//Load Image
 	SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
@@ -113,9 +107,9 @@ void Player::setTexture(std::string path, SDL_Renderer* renderer)
 	else
 	{
 		//Create texture from surface pixels
-		mTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+		playerTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 
-		if(mTexture == NULL)
+		if(playerTexture == NULL)
 			std::cout << "Could not create texture from surface " << SDL_GetError() << std::endl;
 		//Get rid of old loaded surface
 		SDL_FreeSurface(loadedSurface);

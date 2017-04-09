@@ -59,7 +59,7 @@ class Player
 
 	private:
 		SDL_Rect player; //Creates a rectangle to display as the actual player
-		SDL_Texture playerTexture; //Creates a player image
+		SDL_Texture* playerTexture; //Creates a player image
 		SDL_Point playerMap[5][5]; //Creates 25 points that the player could be on in a 5x5 2D array
 
 		int playerHeight; //Height of the player

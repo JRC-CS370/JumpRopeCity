@@ -20,7 +20,6 @@ int main(int argc, char **argv)
 	//Creates global variables for the window, renderer, and texture
 	SDL_Window *window = NULL;
 	SDL_Renderer *renderer = NULL;
-	SDL_Texture *texture = NULL;
 
 	//for random number generation
 	srand(time(NULL));
@@ -116,7 +115,6 @@ int main(int argc, char **argv)
 	//Closes out the window, renderer, and the texture
 	SDL_DestroyWindow(window);
 	SDL_DestroyRenderer(renderer);
-	SDL_DestroyTexture(texture);
 	SDL_Quit(); //Quits SDL
 
 	return 0;
