@@ -83,9 +83,6 @@ void Player::createPlayerMap()
 				//Starts the top left corner of the playerMap at (50,50) Also spaces the x and y coordinates apart by a measure of 125
 				playerMap[y][x].x = (x*125) + 50;
 				playerMap[y][x].y = (y*125) + 0;
-				//for testing
-				std::cout<<"x= " << playerMap[y][x].x << std::endl; //Delete this code eventually
-				std::cout<<"y= " << playerMap[y][x].y << std::endl; //Delete this code eventually
 			}//end of for loop with y
 		}//end of for loop with x
 }//end of createPlayerMap
@@ -97,25 +94,25 @@ void Player::playerMotion(SDL_Event *event)
 			case SDLK_UP:
 			movePlayerUp();
 			//Testing purposes
-			std::cout<<"UP "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"UP "<<"(" << player.x<<","<<player.y<<")"<<std::endl;
 			break;
 			//Deals with Down motion and calls the function movePlayerDown()
 			case SDLK_DOWN:
 			movePlayerDown();
 			//Testing purposes
-			std::cout<<"DOWN "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"DOWN "<<"(" << player.x<<","<<player.y<<")"<<std::endl;
 			break;
 			//Deals with Left motion and calls the function movePlayerLeft()
 			case SDLK_LEFT:
 			movePlayerLeft();
 			//Testing purposes
-			std::cout<<"LEFT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"LEFT "<<"(" << player.x<<","<<player.y<<")"<<std::endl;
 			break;
 			//Deals with Right motion and calls the function movePlayerRight()
 			case SDLK_RIGHT:
 			movePlayerRight();
 			//Testing purposes
-			std::cout<<"RIGHT "<<"(" << playerX<<","<<playerY<<")"<<std::endl;
+			std::cout<<"RIGHT "<<"(" << player.x<<","<<player.y<<")"<<std::endl;
 			break;
 			//Default case set to no value and breaks the switch statement
 			default:

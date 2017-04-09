@@ -28,7 +28,7 @@ SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid n
 bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 {
 	//if number of ropes is greater than the number of tiles on the map minus player, return false
-	if(numRopes >= (rows*cols)-1)
+	if(numRopes > (rows*cols))
 		return false;
 	else
 	{
@@ -55,6 +55,21 @@ bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 				numRopes--;
 			}//end of if statement
 		}//end of while loop
+
+		for(int y = 0; y < 5; y++)
+		{
+			for(int x = 0; x < 5; x++)
+			{
+				if(rope[y][x].getTexture() != NULL)
+					std::cout << "X: " << rope[y][x].getMidPoint()->x << " Y: " << rope[y][x].getMidPoint()->y << "	";
+				else
+					std::cout << "		";
+
+			}
+				std::cout << std::endl;
+				std::cout << std::endl;
+				std::cout << std::endl;
+		}
 		return true;
 	}//end of else statement
 }//end of setRopes

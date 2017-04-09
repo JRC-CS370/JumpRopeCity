@@ -9,11 +9,13 @@
 #include "Player.h"
 #include "Map.h"
 
-//Whenever it says total the value is 5
-#define total 5
 
 int main(int argc, char **argv)
 {
+	//the total number of ropes
+	int total = 0;
+	std::cout << "Input the number of ropes you want to spawn " << std::endl;
+	std::cin >> total;
 	//Creates global variables for the window, renderer, and texture
 	SDL_Window *window = NULL;
 	SDL_Renderer *renderer = NULL;
@@ -37,11 +39,17 @@ int main(int argc, char **argv)
 	//creates an instance of the map class called theMap
 	Map theMap;
 	//Calls the function .setRopes in the Map.cpp file
-	bool success = theMap.setRopes(20, renderer);
+	bool success = theMap.setRopes(total, renderer);
+	bool running = false;
 	if(!success)
 	{
-		std::cout<<"Map not created" << std::endl;
+		std::cout<<"ERROR : Map not created" << std::endl;
+		running = false;
 	}//end of the if statement
+	else
+	{
+		running = true;
+	}//end of the else statement
 	//Creates an instance of the class player
 	Player player;
 	//Creates the map at which the player can move across
@@ -51,8 +59,6 @@ int main(int argc, char **argv)
 	player.setPlayerYCordinate(0);
 	//Boolean value for keyboard input to register one press
 	bool keypress = false;
-	//running game
-	bool running = true;
 	SDL_Event event;
 	//While the game continues to run
 	while(running)
