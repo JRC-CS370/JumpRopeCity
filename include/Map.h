@@ -22,6 +22,7 @@ class Map
 		bool setRopes(int numRopes, SDL_Renderer* renderer);
 		//returns a SDL_Point on the screen depending on the spot
 		SDL_Point getPoint(int x, int y);
+		Rope getRope(int x, int y);
 
 	private:
 		//rope 2d array
