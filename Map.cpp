@@ -6,6 +6,7 @@ Map::Map()
 	this->rows = 5;
 	this->cols = 5;
 }//end of Map()
+
 Map::Map(int rows, int cols)
 {
 	//rope[rows][cols];
@@ -13,9 +14,11 @@ Map::Map(int rows, int cols)
 	this->rows = rows;
 	this->cols = cols;
 }//end of Map(int rows, int cols)
+
 Map::~Map()
 {
 }//end of ~Map()
+
 SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid not the game window
 {
 	SDL_Point point;
@@ -25,6 +28,7 @@ SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid n
 
 	return point;
 }//end of getPoint(int x, int y)
+
 bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 {
 	//if number of ropes is greater than the number of tiles on the map minus player, return false
@@ -73,10 +77,11 @@ bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 				std::cout << std::endl;
 		}
 		*************************************************************************************************************/
-		
+
 		return true;
 	}//end of else statement
 }//end of setRopes
+
 void Map::displayRope(SDL_Renderer* renderer)
 {
 	for(int y = 0; y < rows; y++)
