@@ -64,3 +64,8 @@ void Map::displayRope(SDL_Renderer* renderer)
 		for(int x = 0; x < cols; x++)
 		rope[y][x].render(getPoint(x, y).x, getPoint(x, y).y, NULL, renderer, rope[y][x].getAngle(), NULL, SDL_FLIP_NONE);
 }//end of displayRope(SDL_Renderer* renderer)
+
+Rope Map::getRope(int x, int y)
+{
+	return rope[y][x];
+}
