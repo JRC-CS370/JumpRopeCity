@@ -48,10 +48,16 @@ bool Map::setRopes(int numRopes, SDL_Renderer* renderer)
 
 			if(rope[randomy][randomx].getTexture() == NULL)
 			{
+
 				rope[randomy][randomx].setMidPoint(getPoint(randomy, randomx));	//sets the ropes
+
+				//Verticle / Horizontal
 				angle = rand()%2;
+
+				//Sets the texture based on angle
 				rope[randomy][randomx].setAngle(angle);
 				rope[randomy][randomx].setTexture("/images/Rope.png", renderer);
+				
 				numRopes--;
 			}//end of if statement
 		}//end of while loop
@@ -64,3 +70,15 @@ void Map::displayRope(SDL_Renderer* renderer)
 		for(int x = 0; x < cols; x++)
 		rope[y][x].render(getPoint(x, y).x, getPoint(x, y).y, NULL, renderer, rope[y][x].getAngle(), NULL, SDL_FLIP_NONE);
 }//end of displayRope(SDL_Renderer* renderer)
+
+bool Map::isRope(int xRope, int yRope)
+{
+
+	if(rope[yRope][xRope].getTexture() == NULL)
+	{
+		return false;
+	}else
+	{
+		return true;
+	}
+}

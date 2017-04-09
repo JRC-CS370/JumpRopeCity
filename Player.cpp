@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Define.h"
+#include "Map.h"
 
 Player::Player()
 {
@@ -142,6 +143,8 @@ void Player::movePlayerRight()
 {
 		setPlayerXCordinate(playerX + 1);
 }//end of movePlayerRight
+
+
 
 
 
