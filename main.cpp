@@ -99,7 +99,7 @@ int main(int argc, char **argv)
 		SDL_RenderPresent(renderer);
 		//restricts to 60fps
 		SDL_Delay(1000/60);
-	}
+	}//end of while loop
 
 	//Closes out the window, renderer, and the texture
 	SDL_DestroyWindow(window);
