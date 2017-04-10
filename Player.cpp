@@ -5,6 +5,7 @@
 #include <iostream>
 #include "Player.h"
 #include "Define.h"
+#include "Map.h"
 
 Player::Player()
 {
@@ -97,24 +98,28 @@ void Player::playerMotion(SDL_Event *event)
 			movePlayerUp();
 			//Testing purposes
 			std::cout<<"UP "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
+			
 			break;
 			//Deals with Down motion and calls the function movePlayerDown()
 			case SDLK_DOWN:
 			movePlayerDown();
 			//Testing purposes
 			std::cout<<"DOWN "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
+			
 			break;
 			//Deals with Left motion and calls the function movePlayerLeft()
 			case SDLK_LEFT:
 			movePlayerLeft();
 			//Testing purposes
 			std::cout<<"LEFT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
+			
 			break;
 			//Deals with Right motion and calls the function movePlayerRight()
 			case SDLK_RIGHT:
 			movePlayerRight();
 			//Testing purposes
 			std::cout<<"RIGHT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
+			
 			break;
 			//Default case set to no value and breaks the switch statement
 			default:
@@ -166,35 +171,71 @@ void Player::movePlayerNorthWest()
 	setPlayerXCordinate(playerX - 1);
 }//end of the movePlayerNorthWest()
 
-
-
-/*
-Player::~Player()
+/**
+ * [Player::scanNorth scans every position to the north of the player for a rope]
+ * @return [true if there is a rope, false if not]
+ */
+bool Player::scanNorth(Map ropeMap)
 {
-	free();
-}//end of ~Player
-<<<<<<< HEAD
+	for(int y = playerY; y > 0; y--)
+	{
+		if(ropeMap.isRope(playerX, y) == true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
 
-
-
-void Player::keyMovement(int keyStroke)
+/**
+ * [Player::scanSouth scans every position to the south of the player for a rope]
+ * @return [true if there is a rope, false if not]
+ */
+bool Player::scanSouth(Map ropeMap)
 {
-    switch(keyStroke)
-    {
-        case 1:
-            std::cout << "Left" << std::endl;
-            break;
-        case 2:
-            std::cout << "Right" << std::endl;
-            break;
-        case 3:
-            std::cout << "UP" << std::endl;
-            break;
-        case 4:
-            std::cout << "DOWN" << std::endl;
-            break;
-        default:
-            break;
-    }//end of switch
-}//end of keyMovement
-****************************************************************************************/
+	for(int y = playerY; y < 5; y++)
+	{
+		if(ropeMap.isRope(playerX, y) == true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * [Player::scanWest scans every position to the west of the player for a rope]
+ * @return [true if there is a rope, false if not]
+ */
+bool Player::scanWest(Map ropeMap)
+{
+	for(int x = playerX; x > 0; x--)
+	{
+		if(ropeMap.isRope(x, playerY) == true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+/**
+ * [Player::scanEast scans every position to the east of the player for a rope]
+ * @return [true if there is a rope, false if not]
+ */
+bool Player::scanEast(Map ropeMap)
+{
+	for(int x = playerX; x < 5; x++)
+	{
+		if(ropeMap.isRope(x, playerY) == true)
+		{
+			return true;
+		}
+	}
+	return false;
+}
+
+//void Player::ropeHit(Map ropeMap)
+//{
+//	ropeMap.free(playerY, playerX);
+//}

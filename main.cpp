@@ -37,6 +37,12 @@ static void print_usage();
 //Might not need this one
 static void signal_handler(int sig);
 
+/**
+ * [main where miniAT starts and all of the code is called]
+ * @param  argc [Number of arguments being passed in]
+ * @param  argv [Arguments being passed in]
+ * @return      [return nothing]
+ */
 int main(int argc, char *argv[])
 {
 	try {
@@ -49,6 +55,12 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
+/**
+ * [main_start Our main chunk of code where everything happesn]
+ * @param  argc [Number of arguments being passed in]
+ * @param  argv [Arguments being passed in]
+ * @return      [return nothing]
+ */
 int main_start(int argc, char **argv)
 {
 
@@ -137,7 +149,7 @@ int main_start(int argc, char **argv)
 		}
 
 		miniat_clock(m);
-		peripherals_clock(m);
+		player = peripherals_clock(m, player, theMap);
 		//restricts to 60fps
 		SDL_Delay(1000/60);
 	}
@@ -154,6 +166,12 @@ int main_start(int argc, char **argv)
 //TODO split the miniAt functions to a seperate file
 //Should be trivial
 
+/**
+ * [miniat_start Should start up miniAT, read in the file and
+ * create a new instance of miniAT with the inputed binary file]
+ * @param argc [number of arguments inputed]
+ * @param argv [arguments inputed]
+ */
 static void miniat_start(int argc, char *argv[]) {
 
     signal(SIGINT, signal_handler);
@@ -177,28 +195,13 @@ static void miniat_start(int argc, char *argv[]) {
     m = miniat_new(infile, NULL);
     std::cout << "Created a new instance of MiniAT" << std::endl;
     main_start(argc, argv);
-
-
-    //FOREVER
-    /*for(;;) {
-        //CLOCK CYCLE
-        if(cycles < MAX_CYCLES) {
-            cycles++;
-        }
-	*/
-    //    miniat_clock(m);
-     //   peripherals_clock(m);
-        /*Didnt use ports explained in the above function
-        *
-        *ports_clock(m);
-        *
-        *It will be used later through*/
-    //}
-
     return;
 }
 
-
+/**
+ * [signal_handler Honestly no idea what it does, probably deals with signals]
+ * @param sig [*shrug*]
+ */
 static void signal_handler(int sig) {
 
     if(sig == SIGINT || sig == SIGTERM) {
@@ -208,6 +211,10 @@ static void signal_handler(int sig) {
     return;
 }
 
+/**
+ * [cleanup deals with releasing memory, dealing with miniAT cleanup
+ * peripherals, and ports when they are added. Nothing passed or returned]
+ */
 static void cleanup() {
 
     if(m) {
@@ -235,11 +242,8 @@ static void cleanup() {
     return;
 }
 
-
-/*
- * print_usage()
- *
- * Display command and option usage
+/**
+ * [print_usage display command and option usage]
  */
 static void print_usage() {
 
@@ -250,11 +254,12 @@ static void print_usage() {
     return;
 }
 
-
-/*
-    Fair warning this function is still a mess. Deals with parsing of
-    the inputed assembly file.
-*/
+/**
+ * [parse_options rough function that deals with the parsing of the inputed
+ * binary file.]
+ * @param argc [number of inputed arguments]
+ * @param argv [the arguments themselves]
+ */
 static void parse_options(int argc, char *argv[]) {
 
     std::cout << "reached parse_options function" << std::endl;

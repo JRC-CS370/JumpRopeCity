@@ -3,6 +3,7 @@
 #include <string>
 #include <iostream>
 #include "Define.h"
+#include "Map.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H
@@ -41,6 +42,12 @@ class Player
 		void movePlayerNorthEast();
 		//Function for MiniAT integration: moves the player UP then LEFT
 		void movePlayerNorthWest();
+
+		bool scanSouth(Map ropeMap);
+		bool scanNorth(Map ropeMap);
+		bool scanWest(Map ropeMap);
+		bool scanEast(Map ropeMap);
+		void ropeHit(Map ropeMap);
 
 	private:
 		SDL_Rect player; //Creates a rectangle to display as the actual player

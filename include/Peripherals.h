@@ -1,5 +1,6 @@
 #include <iostream>
 #include "miniat/miniat.h"
+#include "Player.h"
 
 #ifndef PERIPHERALS_H
 #define PERIPHERALS_H
@@ -15,7 +16,7 @@ void peripherals_cleanup();
     */
 
 
-void peripherals_clock(miniat *m);
+Player peripherals_clock(miniat *m, Player p, Map map);
 
     /*
     Peripherals_clock deals with everything to do with the peripherals. It

@@ -16,6 +16,11 @@ Map::Map(int rows, int cols)
 Map::~Map()
 {
 }//end of ~Map()
+
+void Map::free(int y, int x)
+{
+	rope[y][x].free();
+}
 SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid not the game window
 {
 	SDL_Point point;
@@ -64,3 +69,20 @@ void Map::displayRope(SDL_Renderer* renderer)
 		for(int x = 0; x < cols; x++)
 		rope[y][x].render(getPoint(x, y).x, getPoint(x, y).y, NULL, renderer, rope[y][x].getAngle(), NULL, SDL_FLIP_NONE);
 }//end of displayRope(SDL_Renderer* renderer)
+
+/**
+ * [Map::isRope checks to see if there is a rope at the given spot]
+ * @param  checkX [X coordinate of the spot being checked]
+ * @param  checkY [Y coordinate of the spot being checked]
+ * @return        [Whether or not there is a rope in that spot]
+ */
+bool Map::isRope(int checkX, int checkY)
+{
+	if(rope[checkY][checkX].getTexture() == NULL)
+	{
+		return false;
+	}else
+	{
+		return true;
+	}
+}

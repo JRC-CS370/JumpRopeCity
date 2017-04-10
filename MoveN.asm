@@ -45,52 +45,8 @@
 	movi r2 = 0
 
 !while_something_there
-	brae [!move_random], r1 == r0
-
-	and  r3 = r1 & 0b_0000_0001
-	brae [!next_bit], r3 == r0
-
-# we got a direction
-	stor [r2 + P_MOVE_S] = r200
-	bra  [!again]
-
-!next_bit
-	shr r1 = r1 >> 1
-	inc r2
-	bra [!while_something_there]
-
-!move_random
-	add  r120 = PC + 2
-	bra  [!rand]
-	mod  r121 = r121 % 8
-	stor [r121 + P_MOVE_N] = r200
+	stor [P_MOVE_N] = r200
 	bra  [!again]
 
 !inf
 	bra [!inf]
-
-
-<<<
-	!rand
-
-	random bit pattern returned in r121
-
-	uses registers r122...r124
-	return addres expected in r120
->>>
-
-!rand
-	movr r124 = r122
-	shl  r122 = r122 << 7
-	shr  r124 = r124 >> 25
-	exor r122 = r122 ^ r124
-	add  r122 = r122 + r123
-	movr r121 = r122
-
-	movr r124 = r123
-	shl  r123 = r123 << 7
-	shr  r124 = r124 >> 25
-	exor r123 = r123 ^ r124
-	add  r123 = r123 + 0xBADCC0DE
-
-	bra [r120]
