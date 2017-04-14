@@ -31,10 +31,9 @@ void Rope::setTexture(std::string path, SDL_Renderer* renderer)
 	{
 		//Create texture from surface pixels
 		mTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
-
 		if(mTexture == NULL)
 			std::cout << "Could not create texture from surface " << SDL_GetError() << std::endl;
-
+	
 		//Get rid of old loaded surface
 		SDL_FreeSurface(loadedSurface);
 	}//end of else
@@ -49,6 +48,9 @@ void Rope::free()
 		mTexture = NULL;
 		mWidth = 0;
 		mHeight = 0;
+		midpoint.x = 0;
+		midpoint.y = 0;
+		angle = 0;
 	}//end of if statement
 }//end of Void Rope::free()
 
@@ -63,7 +65,6 @@ void Rope::render(int x, int y, SDL_Rect* rect, SDL_Renderer* renderer, double a
 		renderQuad.w = rect->w;
 		renderQuad.h = rect->h;
 	}//end of if statement
-
 	//Render to screen
 	SDL_RenderCopyEx(renderer, mTexture, rect, &renderQuad, angle, center, flip);
 }//end of render(int x, int y, SDL_Rect* rect, SDL_Renderer* renderer, double angle, SDL_Point* center, SDL_RendererFlip flip)
