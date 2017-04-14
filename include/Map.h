@@ -16,13 +16,19 @@ class Map
 		Map(int rows, int cols);
 		//Deconstructor
 		~Map();
-		//displays map
-		void displayRope(SDL_Renderer* renderer);
+		
 		//sets a number of ropes
 		bool setRopes(int numRopes, SDL_Renderer* renderer);
+		
 		//returns a SDL_Point on the screen depending on the spot
 		SDL_Point getPoint(int x, int y);
+		
+		//returns a boolean determining if there's a rope
+		bool isRope(int xRope, int yRope);
 
+		//displays map
+		void displayRope(SDL_Renderer* renderer);
+		
 	private:
 		//rope 2d array
 		Rope rope[5][5];

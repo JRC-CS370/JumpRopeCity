@@ -77,7 +77,8 @@ bool Map::isRope(int xRope, int yRope)
 	if(rope[yRope][xRope].getTexture() == NULL)
 	{
 		return false;
-	}else
+	}
+	else
 	{
 		return true;
 	}
