@@ -12,6 +12,72 @@
 
 int main(int argc, char **argv)
 {
+	SDL_Init(SDL_INIT_EVERYTHING);
+
+	Scene myScene;
+	myScene.SceneCreation();
+
+	SDL_Event event;
+	bool keypress = false;
+	bool running = true;
+
+	while(running)
+	{
+		SDL_PollEvent(&event);
+		switch (event.type)
+		{
+			//close window
+			case SDL_QUIT:
+				//Quits the actual program if the user presses exit
+				running = false;
+				break;
+
+			case SDL_KEYDOWN:
+				if(!keypress) // if the keypress is false
+				{
+					keypress = true;
+					switch(event.key.keysym.sym)
+					{
+						case SDLK_UP:
+							std::cout<<"up"<<std::endl;
+							break;
+						
+						case SDLK_DOWN:
+							std::cout<<"down"<<std::endl;							
+							break;
+
+						case SDLK_LEFT:
+							std::cout<<"left"<<std::endl;
+							break;
+						
+						case SDLK_RIGHT:
+							std::cout<<"right"<<std::endl;							
+							break;
+						
+						default:
+							break;
+					}
+					
+				}
+				break;
+
+			case SDL_KEYUP:
+				keypress = false;
+				break;
+
+			default:
+				//Default case simply breaks out of the switch statement
+				break;
+		}
+
+		myScene.display();
+	}
+
+	SDL_Quit();
+	
+	return 0;
+}
+	/*
 	//the total number of ropes
 	int total = 0;
 	std::cout << "Input the number of ropes you want to spawn " << std::endl;
@@ -108,4 +174,4 @@ int main(int argc, char **argv)
 	SDL_Quit(); //Quits SDL
 
 	return 0;
-}
+}*/
