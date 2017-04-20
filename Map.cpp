@@ -8,9 +8,11 @@ Map::Map()
 	{
 		for(int j = 0; j < 5; j++)
 		{
-			mapArray[i][j] = NO_ROPE;
+			mapArray[i][j] = EMPTY;
 		}
 	}
+
+	std::cout << "An instance of map was created" << std::endl;
 }//end of Map()
 Map::Map(int rows, int cols)
 {

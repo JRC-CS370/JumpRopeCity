@@ -21,9 +21,9 @@ int main(int argc, char **argv)
 	bool keypress = false;
 	bool running = true;
 	
+	Player newPlayer;
+	newPlayer.ShowPlayerMap();
 
-	Map map;
-	map.DisplayMap();
 	while(running)
 	{
 		SDL_PollEvent(&event);
@@ -43,10 +43,14 @@ int main(int argc, char **argv)
 					{
 						case SDLK_UP:
 							std::cout<<"up"<<std::endl;
+							newPlayer.movePlayerNorth();
+							newPlayer.ShowPlayerMap();
 							break;
 						
 						case SDLK_DOWN:
-							std::cout<<"down"<<std::endl;							
+							std::cout<<"down"<<std::endl;
+							newPlayer.movePlayerSouth();
+							newPlayer.ShowPlayerMap();							
 							break;
 
 						case SDLK_LEFT:

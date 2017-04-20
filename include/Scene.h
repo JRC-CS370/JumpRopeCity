@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
+#include "Define.h"
 
 #ifndef SCENE_H
 #define SCENE_H

@@ -2,55 +2,109 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
-#include "Define.h"
+#include "Map.h"
 
 #ifndef PLAYER_H
 #define PLAYER_H
 
 class Player
 {
+	
 	public:
 
-		//Used for Initializing variables that exist in the Player.cpp file
+		/**
+		 * [Player: This is the initializer for the Player Class, and sets
+		 * 	all of the starting variables]
+		 */
 		Player();
-		//Renders the actual player on the window
-		void renderP(SDL_Renderer *renderer);
-		//Sets the x and y positions of the player
+	
+		/**
+		 * [setPlayerXCordinate This function is not currently in use, could
+		 * 	be used later to allow the user to pick the location the person
+		 * 	would start at, this is the X position]
+		 * @param playerX [value of the players X position]
+		 */
 		void setPlayerXCordinate(int playerX);
+
+		/**
+		 * [setPlayerYCordinate This function is not currently in use, could
+		 * 	be used later to allow the user to pick the location the person
+		 * 	woudl start at, this is the Y position]
+		 * @param playerY [value of the players Y position]
+		 */
 		void setPlayerYCordinate(int playerY);
-		//This creates get functions for the players height and width
-		int getPlayerHeight();
-		int getPlayerWidth();
-		//Function used to create the player Map
-		void createPlayerMap();
-		//Function to move the player around the playerMap
-		void playerMotion(SDL_Event *event);
-		//Fuction that moves the player UP on the SDL_Point playerMap[5][5]
-		void movePlayerUp();
-		//Fuction that moves the player DOWN on the SDL_Point playerMap[5][5]
-		void movePlayerDown();
-		//Fuction that moves the player LEFT on the SDL_Point playerMap[5][5]
-		void movePlayerLeft();
-		//Fuction that moves the player RIGHT on the SDL_Point playerMap[5][5]
-		void movePlayerRight();
-		//Function for MiniAT integration: moves the player DOWN then RIGHT
+
+		/**
+		 * [ShowPlayerMap will traverse the current player array, and draw
+		 * 	that to the screen. Nothing is being passed in or out]
+		 */
+		void ShowPlayerMap();
+
+		/**
+		 * [movePlayerNorth moves the player in the north direction one tile
+		 *  at a time, thats y-1 and x stays the same]
+		 */
+		void movePlayerNorth();
+
+		/**
+		 * [movePlayerSouth moves the player in the south direction one tile
+		 * 	at a time, thats y+1 and x stays the same]
+		 */
+		void movePlayerSouth();
+
+		/**
+		 * [movePlayerWest moves the player in the West direction one tile
+		 * 	at a time, thats x -1 and y stays the same]
+		 */
+		void movePlayerWest();
+
+		/**
+		 * [movePlayerEast moves the player in the East direction one tile
+		 * 	at a time, thats x + 1 and y stays the same]
+		 */
+		void movePlayerEast();
+
+		/**
+		 * [movePlayerSouthEast moves the player in the SouthEast direction
+		 * 	one tile at a time, thats y + 1, x + 1. And it always moves horizontally
+		 * 	first]
+		 */
 		void movePlayerSouthEast();
-		//Function for MiniAT integration: moves the player DOWN then LEFT
+		
+		/**
+		 * [movePlayerSouthWest moves the player in the SouthWest direction
+		 * 	one tile at a time, thats y + 1, x - 1. And it always moves horizontally
+		 * 	first]
+		 */
 		void movePlayerSouthWest();
-		//Function for MiniAT integration: moves the player UP then RIGHT
+
+		/**
+		 * [movePlayerNorthEast moves the player in the NorthEast direction
+		 * 	one tile at a time, thats y - 1, x + 1. And it always moves horizontally
+		 * 	first]
+		 */
 		void movePlayerNorthEast();
-		//Function for MiniAT integration: moves the player UP then LEFT
+
+		/**
+		 * [movePlayerNorthWest moves the player in the NorthWest direction
+		 * 	one tile at a time, thats y - 1, x - 1. And it always moves horizontally
+		 * 	first]
+		 */
 		void movePlayerNorthWest();
 
+		/**
+		 * [SendToRenderer This function is not yet implemented but will allow us to
+		 * 	send the mapArray[][] to the renderer and have it displayed on the screen]
+		 */
+		void SendToRenderer();
+
 	private:
-		SDL_Rect player; //Creates a rectangle to display as the actual player
-		int playerHeight; //Height of the player
-		int playerWidth; //Width of the player
 		int playerX; //Creates the x coordinte for the player
 		int playerY; //Creates the y coordinate for the player
 		int playerRows; //rows for the player Map
 		int playerCols; //columns for the player Map
-		SDL_Point playerMap[5][5]; //Creates 25 points that the player could be on in a 5x5 2D array
+		Map PlayerMap; //Contains all of the things needed for a map, look into Map.h for more
+		
 };
 
 #endif

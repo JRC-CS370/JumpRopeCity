@@ -1,5 +1,4 @@
 #include "Scene.h"
-#include "Define.h"
 
 //Output just explains what is going on in ther terminal for simple error finding
 
