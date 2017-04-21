@@ -31,6 +31,9 @@ void Player::movePlayerNorthEast()
 
 void Player::movePlayerEast()
 {
+	PlayerMap.mapArray[playerX + 1][playerY] = PlayerMap.PLAYER;
+	PlayerMap.mapArray[playerY][playerX] = PlayerMap.PLAYER;
+	playerX++;
 
 }
 
@@ -53,7 +56,9 @@ void Player::movePlayerSouthWest()
 
 void Player::movePlayerWest()
 {
-
+	PlayerMap.mapArray[playerX-1][playerY] = PlayerMap.PLAYER;
+	PlayerMap.mapArray[playerY][playerX] = PlayerMap.PLAYER;
+	playerX--;
 }
 
 void Player::movePlayerNorthWest()
