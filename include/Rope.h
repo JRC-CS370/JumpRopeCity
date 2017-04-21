@@ -4,6 +4,7 @@
 #include <math.h>
 #include <iostream>
 #include <cstring>
+#include "Map.h"
 
 #ifndef ROPE_H
 #define ROPE_H
@@ -11,6 +12,9 @@
 class Rope
 {
 	public:
+		//Temporary Declaration
+		Map ropeMap;
+
 		//Initializes variables
 		Rope();
 		//Deallocates memory
@@ -23,29 +27,37 @@ class Rope
 		int getWidth();
 		//Gets the height of the rope image
 		int getHeight();
-		//gets start point on screen
+		//Gets start point on screen
 		SDL_Point* getMidPoint();
-		//gets angle
+		//Gets angle
 		int getAngle();
-		//gets texture
+		//Gets texture
 		SDL_Texture* getTexture();
 		//Loads image at a place
 		void setTexture(std::string path, SDL_Renderer* renderer);
-		//set point a position
+		//Set point a position
 		void setMidPoint(SDL_Point point);
-		//sets angle
+		//Sets angle
 		void setAngle(int newAngle);
+
+		// Temporary functions for overhaul
+		void setRope();
+
+		void deleteRope();
 
 	private:
 		//Image Texture
 		SDL_Texture* mTexture;
+
 		//Image dimensions
 		int mWidth;             //image is 15
 		int mHeight;            //image is 100
-		//position on the map
+
+		//Position on the map
 		SDL_Point midpoint;
-		//angle it is
-		//can be 0-180
+
+		//Angle
+		//Can be 0-180
 		int angle;
 };
 #endif /* ROPE_H */
