@@ -19,55 +19,153 @@ Look into the Player.h file for descriptions of the functions.
 
 void Player::movePlayerNorth()
 {
-	PlayerMap.mapArray[playerY - 1][playerX] = PlayerMap.PLAYER;
-	PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
-	playerY--;
-}
+	if(canMoveTo(playerX, playerY - 1))
+	{
+		PlayerMap.mapArray[playerY - 1][playerX] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
 
-void Player::movePlayerNorthEast()
-{
+		playerY--;
+	}
+	else
+	{
+		std::cout << "cannot move north" << std::endl;
+	}
 
-}
-
-void Player::movePlayerEast()
-{
-	PlayerMap.mapArray[playerX + 1][playerY] = PlayerMap.PLAYER;
-	PlayerMap.mapArray[playerY][playerX] = PlayerMap.PLAYER;
-	playerX++;
-
-}
-
-void Player::movePlayerSouthEast()
-{
-
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
 }
 
 void Player::movePlayerSouth()
 {
-	PlayerMap.mapArray[playerY + 1][playerX] = PlayerMap.PLAYER;
-	PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
-	playerY++;
+	if(canMoveTo(playerX, playerY + 1))
+	{
+		PlayerMap.mapArray[playerY + 1][playerX] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
+
+		playerY++;
+	}
+	else
+	{
+		std::cout << "cannot move south" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
 }
 
-void Player::movePlayerSouthWest()
+void Player::movePlayerEast()
 {
+	if(canMoveTo(playerX + 1, playerY))
+	{
+		PlayerMap.mapArray[playerY][playerX + 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
 
+		playerX++;
+	}
+	else
+	{
+		std::cout << "cannot move east" << std::endl;
+	}
+	
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
 }
 
 void Player::movePlayerWest()
 {
-	PlayerMap.mapArray[playerX-1][playerY] = PlayerMap.PLAYER;
-	PlayerMap.mapArray[playerY][playerX] = PlayerMap.PLAYER;
-	playerX--;
+	if(canMoveTo(playerX - 1, playerY))
+	{
+		PlayerMap.mapArray[playerY][playerX - 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
+
+		playerX--;
+	}
+	else
+	{
+		std::cout << "cannot move west" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
+}
+
+void Player::movePlayerNorthEast()
+{
+	if(canMoveTo(playerX + 1, playerY - 1))
+	{
+		PlayerMap.mapArray[playerY - 1][playerX + 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
+
+		playerX++;
+		playerY--;
+	}
+	else
+	{
+		std::cout << "cannot move north east" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
 }
 
 void Player::movePlayerNorthWest()
 {
+	if(canMoveTo(playerX - 1, playerY - 1))
+	{
+		PlayerMap.mapArray[playerY - 1][playerX - 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
 
+		playerX--;
+		playerY--;
+	}
+	else
+	{
+		std::cout << "cannot move north west" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
 }
 
-void Player::SendToRenderer()
+void Player::movePlayerSouthEast()
 {
-	//This is where we would send the PlayerMap.mapArray to the
-	//Renderer in the Scene file
+	if(canMoveTo(playerX + 1, playerY + 1))
+	{
+		PlayerMap.mapArray[playerY + 1][playerX + 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
+
+		playerX++;
+		playerY++;
+	}
+	else
+	{
+		std::cout << "cannot move south east" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
+}
+
+
+void Player::movePlayerSouthWest()
+{
+	if(canMoveTo(playerX - 1, playerY + 1))
+	{
+		PlayerMap.mapArray[playerY + 1][playerX - 1] = PlayerMap.PLAYER;
+		PlayerMap.mapArray[playerY][playerX] = PlayerMap.EMPTY;
+
+		playerX--;
+		playerY++;
+	}
+	else
+	{
+		std::cout << "cannot move south west" << std::endl;
+	}
+
+	std::cout << "X = " << playerX << " Y = " << playerY << std::endl;
+}
+
+bool Player::canMoveTo(int x, int y)
+{
+	std::cout << "canMoveTo params X" << x << " Y" << y << std::endl;
+	return 	(x >= 0) && (x < PlayerMap.cols) && 
+			(y >= 0) && (y < PlayerMap.rows);
+}
+
+void Player::addToRenderer()
+{
+	//implementing now
 }

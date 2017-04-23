@@ -22,7 +22,8 @@ class Map
 		int rows; //array rows
 		int cols; //array columns
 
-		enum MapObj{
+		enum MapObj
+		{
 			EMPTY, //Set to 0
 			V_ROPE,  //Set to 1
 			H_ROPE,  //Set to 2

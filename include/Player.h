@@ -53,30 +53,16 @@ class Player
 		void movePlayerSouth();
 
 		/**
-		 * [movePlayerWest moves the player in the West direction one tile
-		 * 	at a time, thats x -1 and y stays the same]
-		 */
-		void movePlayerWest();
-
-		/**
 		 * [movePlayerEast moves the player in the East direction one tile
 		 * 	at a time, thats x + 1 and y stays the same]
 		 */
 		void movePlayerEast();
 
 		/**
-		 * [movePlayerSouthEast moves the player in the SouthEast direction
-		 * 	one tile at a time, thats y + 1, x + 1. And it always moves horizontally
-		 * 	first]
+		 * [movePlayerWest moves the player in the West direction one tile
+		 * 	at a time, thats x -1 and y stays the same]
 		 */
-		void movePlayerSouthEast();
-		
-		/**
-		 * [movePlayerSouthWest moves the player in the SouthWest direction
-		 * 	one tile at a time, thats y + 1, x - 1. And it always moves horizontally
-		 * 	first]
-		 */
-		void movePlayerSouthWest();
+		void movePlayerWest();
 
 		/**
 		 * [movePlayerNorthEast moves the player in the NorthEast direction
@@ -93,10 +79,24 @@ class Player
 		void movePlayerNorthWest();
 
 		/**
+		 * [movePlayerSouthEast moves the player in the SouthEast direction
+		 * 	one tile at a time, thats y + 1, x + 1. And it always moves horizontally
+		 * 	first]
+		 */
+		void movePlayerSouthEast();
+		
+		/**
+		 * [movePlayerSouthWest moves the player in the SouthWest direction
+		 * 	one tile at a time, thats y + 1, x - 1. And it always moves horizontally
+		 * 	first]
+		 */
+		void movePlayerSouthWest();
+
+		/**
 		 * [SendToRenderer This function is not yet implemented but will allow us to
 		 * 	send the mapArray[][] to the renderer and have it displayed on the screen]
 		 */
-		void SendToRenderer();
+		void addToRenderer();
 
 	private:
 		int playerX; //Creates the x coordinte for the player
@@ -104,7 +104,13 @@ class Player
 		int playerRows; //rows for the player Map
 		int playerCols; //columns for the player Map
 		Map PlayerMap; //Contains all of the things needed for a map, look into Map.h for more
-		
+
+		/**
+		 * canMoveTo() is a private function that the movement functions use to check 
+		 * to prevent out of bounds
+		 * @param pass in the x and y of the intended movement
+		 */
+		bool canMoveTo(int x, int y);
 };
 
 #endif
