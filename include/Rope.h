@@ -16,6 +16,8 @@ class Rope
 		Rope();
 		//Set ropes function to set the ropes
 		void setRopes();
+		//calls the DisplayMap function in the Map class
+		void ShowRopeMap();
 
 	private:
 		//Creates an instance of the Map for the Ropes
@@ -23,8 +25,8 @@ class Rope
 		//enum used to determine if the rope is horizontal or verticle.
 		enum angle
 		{
-			HORIZONTAL = 1,
-			VERTICLE = 2
+			VERTICLE = 1,
+			HORIZONTAL = 2
 		};//end of enum angle
 };
 #endif /* ROPE_H */

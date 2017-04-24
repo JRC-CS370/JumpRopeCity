@@ -17,7 +17,7 @@ class Map
 		~Map();
 
 		void DisplayMap();
-		
+
 		int mapArray[5][5]; //2d array of integers, 0-3
 		int rows; //array rows
 		int cols; //array columns

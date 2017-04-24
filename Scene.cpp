@@ -19,7 +19,7 @@ Scene::~Scene()
 	SDL_DestroyWindow(mWindow);
 	SDL_DestroyRenderer(mRenderer);
 	SDL_DestroyTexture(mTexture);
-	
+
 	mWindow = NULL;
 	mRenderer = NULL;
 	mTexture = NULL;
@@ -36,7 +36,7 @@ bool Scene::SceneCreation()
 	//Window Creation
 	mWindow = SDL_CreateWindow("Jump Rope City", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_W, SCREEN_H, 0);
 	if(mWindow == NULL)
-		std::cout << "Error in the winow creation" << std::endl;
+		std::cout << "Error in the window creation" << std::endl;
 
 	//Renderer Creation
 	mRenderer = SDL_CreateRenderer(mWindow, -1, SDL_RENDERER_TARGETTEXTURE);
@@ -84,17 +84,16 @@ void Scene::display()
 {
 	//makes window background not black
 	SDL_SetRenderDrawColor(mRenderer, 200, 242, 242, 255);
-	
+
 	//resets the renderer
 	SDL_RenderClear(mRenderer);
-	
+
 	//displays the ropes existing within theMap instance of the Map class using the .displayRope function in the Map.cpp file
 	SDL_SetRenderDrawColor(mRenderer, 100, 200, 100, 200);
-	
+
 	//outputs the renderer
 	SDL_RenderPresent(mRenderer);
-	
+
 	//restricts to 60fps
 	SDL_Delay(1000/60);
 }
-
