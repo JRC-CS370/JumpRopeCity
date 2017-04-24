@@ -45,7 +45,7 @@
 	movi r2 = 0
 
 !while_something_there
-	stor [P_MOVE_SE] = r200
+	stor [P_MOVE_NW] = r200
 	bra  [!again]
 
 !inf

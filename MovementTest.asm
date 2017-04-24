@@ -44,7 +44,7 @@
 
 !xtop
 	dec r101
-	movi r100 = 40
+	movi r100 = 10
 
 !top
 	stor[r101 + P_MOVE_N] = r0

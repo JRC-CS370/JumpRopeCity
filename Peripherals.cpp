@@ -104,6 +104,7 @@ Player peripherals_clock(miniat *m, Player &p, Map &theMap)
 				case P_MOVE_NE:
 					p.movePlayerNorthEast();
 					std::cout << "Called movePlayerNorthEast" << std::endl;
+					break;
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_NE peripheral" << std::endl;
 				default:
 					std::cout << "There is no peripheral accepting writes at 0x" << bus.address << std::endl;
