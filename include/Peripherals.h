@@ -16,7 +16,7 @@ void peripherals_cleanup();
     */
 
 
-Player peripherals_clock(miniat *m, Player p, Map map);
+Player peripherals_clock(miniat *m, Player &p, Map &theMap);
 
     /*
     Peripherals_clock deals with everything to do with the peripherals. It
