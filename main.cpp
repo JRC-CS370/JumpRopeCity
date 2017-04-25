@@ -127,12 +127,12 @@ int main_start(int argc, char **argv)
 				{
 					keypress = true;
 					player.playerMotion(&event); // Calls the playerMotion function in the Player.cpp class
-					ropeDeleted = theMap.deleteRope(player.getPlayerX(), player.getPlayerY(), &event);
+					ropeDeleted = theMap.deleteRope(player.getPlayerX(), player.getPlayerY(), player.getPlayerPX(), player.getPlayerPY());
 					if(ropeDeleted == true)
 					{
-						std::cout << std::endl;
-						std::cout << "THE ROPE IS DELETED" << std::endl;
-						std::cout << std::endl;
+						//std::cout << std::endl;
+						//std::cout << "THE ROPE IS DELETED" << std::endl;
+						//std::cout << std::endl;
 						ropeDeleted = false;
 					}
 				}//end of if statement

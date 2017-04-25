@@ -54,6 +54,16 @@ int Player::getPlayerY()
 {
 	return playerY;
 }
+
+int Player::getPlayerPX()
+{
+	return playerPX;
+}
+
+int Player::getPlayerPY()
+{
+	return playerPY;
+}
 //This function sets the players x coordinate on the playerMap 2D array
 void Player::setPlayerXCordinate(int playerX)
 {
@@ -110,28 +120,28 @@ void Player::playerMotion(SDL_Event *event)
 		{
 			//Deals with Up motion and calls the function movePlayerUp()
 			case SDLK_UP:
-			movePlayerUp();
+			//movePlayerUp();
 			//Testing purposes
 			std::cout<<"UP "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 
 			break;
 			//Deals with Down motion and calls the function movePlayerDown()
 			case SDLK_DOWN:
-			movePlayerDown();
+			//movePlayerDown();
 			//Testing purposes
 			std::cout<<"DOWN "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 
 			break;
 			//Deals with Left motion and calls the function movePlayerLeft()
 			case SDLK_LEFT:
-			movePlayerLeft();
+			//movePlayerLeft();
 			//Testing purposes
 			std::cout<<"LEFT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 
 			break;
 			//Deals with Right motion and calls the function movePlayerRight()
 			case SDLK_RIGHT:
-			movePlayerRight();
+			//movePlayerRight();
 			//Testing purposes
 			std::cout<<"RIGHT "<<"("<<playerX<<","<<playerY<<")"<<"   "<<"xpos: "<<player.x<<"  "<<"ypos: "<<player.y<<std::endl;
 
@@ -143,51 +153,90 @@ void Player::playerMotion(SDL_Event *event)
 }//end of Player::playerMotion function
 
 //Function to increment player.y and calls setPlayerYCordinate
-void Player::movePlayerUp()
+void Player::movePlayerUp(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 }//end of movePlayerUp
 
 //Function to increment player.y and calls setPlayerYCordinate
-void Player::movePlayerDown()
+void Player::movePlayerDown(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of Player::movePlayerDown
 
 //Function to increment player.x and calls setPlayerXCordinate
-void Player::movePlayerLeft()
+void Player::movePlayerLeft(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerXCordinate(playerX - 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of Player::movePlayerLeft
 
 //Function to increment player.x and calls setPlayerXCordinate
-void Player::movePlayerRight()
+void Player::movePlayerRight(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerXCordinate(playerX + 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of movePlayerRight
 //Function for MiniAT integration: moves the player DOWN then RIGHT
-void Player::movePlayerSouthEast()
+void Player::movePlayerSouthEast(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
 	setPlayerXCordinate(playerX + 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of movePlayerSouthEast()
 //Function for MiniAT integration: moves the player DOWN then LEFT
-void Player::movePlayerSouthWest()
+void Player::movePlayerSouthWest(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
 	setPlayerXCordinate(playerX - 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of movePlayerSouthWest()
 //Function for MiniAT integration: moves the player UP then RIGHT
-void Player::movePlayerNorthEast()
+void Player::movePlayerNorthEast(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
 	setPlayerXCordinate(playerX + 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of the movePlayerNorthEast
 //Function for MiniAT integration: moves the player UP then LEFT
-void Player::movePlayerNorthWest()
+void Player::movePlayerNorthWest(Map &theMap)
 {
+	playerPY = playerY;
+	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
 	setPlayerXCordinate(playerX - 1);
+
+	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of the movePlayerNorthWest()
 
 /**

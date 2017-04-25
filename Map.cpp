@@ -107,17 +107,6 @@ void Map::displayRope(SDL_Renderer* renderer)
  * @param  checkY [Y coordinate of the spot being checked]
  * @return        [Whether or not there is a rope in that spot]
  */
-bool Map::isRope(int checkX, int checkY)
-{
-	if(rope[checkY][checkX].getTexture() == NULL)
-	{
-		return false;
-	}else
-	{
-		return true;
-	}
-}
-
 bool Map::isRope(int xRope, int yRope)
 {
 
@@ -128,13 +117,18 @@ bool Map::isRope(int xRope, int yRope)
 }
 
 //deletes ropes
-bool Map::deleteRope(int x, int y, SDL_Event *event)
+/*
+* [Map::delteRope will delete the rope at the x,y coordinate given]
+* @Param int x: [The players X coordinate]
+* @Param int y: [The players Y coordinate]
+*/
+bool Map::deleteRope(int x, int y, int Px, int Py)
 {
 	//first test
 	if(	rope[y][x].getTexture() != NULL &&			//check if there is a texture
 		rope[y][x].getAngle() == 0 &&				//checks to see if horizontal rope
-		(event->key.keysym.sym == SDLK_UP || 		//checks to see if player pressed up
-		event->key.keysym.sym == SDLK_DOWN)	)		//or player pressed down
+		((Px == x && Py > y) || 		//checks to see if player pressed up
+		 (Px == x && Py < y))	)		//or player pressed down
 	{
 		std::cout << "up/down being called" << std::endl;
 		std::cout << "rope deleted" << std::endl;
@@ -146,8 +140,8 @@ bool Map::deleteRope(int x, int y, SDL_Event *event)
 	{
 		if(	rope[y][x].getTexture() != NULL && 		//check if there is a texture
 			rope[y][x].getAngle() == 90 &&			//checks to see if vertical rope
-			(event->key.keysym.sym == SDLK_RIGHT || //checks to see if player pressed right
-			event->key.keysym.sym == SDLK_LEFT))	//or player pressed down
+			((Px > x && Py == y) || //checks to see if player pressed right
+			 (Px < x && Py == y)))	//or player pressed down
 		{
 			std::cout << "left/right being called" << std::endl;
 			std::cout << "rope deleted" << std::endl;

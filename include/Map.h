@@ -35,7 +35,7 @@ class Map
 		bool isRope(int xRope, int yRope);
 
 		//deletes ropes
-		bool deleteRope(int x, int y, SDL_Event *event);
+		bool deleteRope(int x, int y, int Px, int Py);
 
 	private:
 		//rope 2d array

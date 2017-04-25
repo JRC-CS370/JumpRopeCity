@@ -68,41 +68,41 @@ Player peripherals_clock(miniat *m, Player &p, Map &theMap)
 			{
 				case P_MOVE_N:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_N peripheral" << std::endl;
-					p.movePlayerUp();
+					p.movePlayerUp(theMap);
 					std::cout << "Called movePlayerUp" << std::endl;
 					break;
 				case P_MOVE_NW:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_NW peripheral" << std::endl;
-					p.movePlayerNorthWest();
+					p.movePlayerNorthWest(theMap);
 					std::cout << "Called movePlayerNorthWest" << std::endl;
 					break;
 				case P_MOVE_W:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_W peripheral" << std::endl;
-					p.movePlayerLeft();
+					p.movePlayerLeft(theMap);
 					std::cout << "Called movePlayerLeft" << std::endl;
 					break;
 				case P_MOVE_SW:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_SW peripheral" << std::endl;
-					p.movePlayerSouthWest();
+					p.movePlayerSouthWest(theMap);
 					std::cout << "Called movePlayerSouthWest" << std::endl;
 					break;
 				case P_MOVE_S:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_S peripheral" << std::endl;
-					p.movePlayerDown();
+					p.movePlayerDown(theMap);
 					std::cout << "Called movePlayerDown" << std::endl;
 					break;
 				case P_MOVE_SE:
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_SE peripheral" << std::endl;
-					p.movePlayerSouthEast();
+					p.movePlayerSouthEast(theMap);
 					std::cout << "Called movePlayerSouthEast" << std::endl;
 					break;
 				case P_MOVE_E:
-					p.movePlayerRight();
+					p.movePlayerRight(theMap);
 					std::cout << "Called movePlayerRight" << std::endl;
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_E peripheral" << std::endl;
 					break;
 				case P_MOVE_NE:
-					p.movePlayerNorthEast();
+					p.movePlayerNorthEast(theMap);
 					std::cout << "Called movePlayerNorthEast" << std::endl;
 					break;
 					//std::cout << "STORed" << (signed)bus.data << " to the P_MOVE_NE peripheral" << std::endl;

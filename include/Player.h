@@ -29,6 +29,8 @@ class Player
 		//Returns location on array
 		int getPlayerX();
 		int getPlayerY();
+		int getPlayerPX();
+		int getPlayerPY();
 
 		//Function used to create the player Map
 		void createPlayerMap();
@@ -37,28 +39,28 @@ class Player
 		void playerMotion(SDL_Event *event);
 
 		//Fuction that moves the player UP on the SDL_Point playerMap[5][5]
-		void movePlayerUp();
+		void movePlayerUp(Map &theMap);
 
 		//Fuction that moves the player DOWN on the SDL_Point playerMap[5][5]
-		void movePlayerDown();
+		void movePlayerDown(Map &theMap);
 
 		//Fuction that moves the player LEFT on the SDL_Point playerMap[5][5]
-		void movePlayerLeft();
+		void movePlayerLeft(Map &theMap);
 
 		//Fuction that moves the player RIGHT on the SDL_Point playerMap[5][5]
-		void movePlayerRight();
+		void movePlayerRight(Map &theMap);
 
 		//Function for MiniAT integration: moves the player DOWN then RIGHT
-		void movePlayerSouthEast();
+		void movePlayerSouthEast(Map &theMap);
 
 		//Function for MiniAT integration: moves the player DOWN then LEFT
-		void movePlayerSouthWest();
+		void movePlayerSouthWest(Map &theMap);
 
 		//Function for MiniAT integration: moves the player UP then RIGHT
-		void movePlayerNorthEast();
+		void movePlayerNorthEast(Map &theMap);
 
 		//Function for MiniAT integration: moves the player UP then LEFT
-		void movePlayerNorthWest();
+		void movePlayerNorthWest(Map &theMap);
 
 		bool scanSouth(Map ropeMap);
 		bool scanNorth(Map ropeMap);
@@ -72,6 +74,10 @@ class Player
 		int playerWidth; //Width of the player
 		int playerX; //Creates the x coordinte for the player
 		int playerY; //Creates the y coordinate for the player
+
+		int playerPX; //Previous player X position before moving
+		int playerPY; // Previous player Y position before moving
+
 		int playerRows; //rows for the player Map
 		int playerCols; //columns for the player Map
 		SDL_Point playerMap[5][5]; //Creates 25 points that the player could be on in a 5x5 2D array
