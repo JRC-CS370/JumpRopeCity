@@ -191,35 +191,6 @@ void Player::movePlayerNorthWest()
 	setPlayerXCordinate(playerX - 1);
 }//end of the movePlayerNorthWest()
 
-//Function for MiniAT integration: moves the player DOWN then RIGHT
-void Player::movePlayerSouthEast()
-{
-	setPlayerYCordinate(playerY + 1);
-	setPlayerXCordinate(playerX + 1);
-}//end of movePlayerSouthEast()
-
-//Function for MiniAT integration: moves the player DOWN then LEFT
-void Player::movePlayerSouthWest()
-{
-	setPlayerYCordinate(playerY + 1);
-	setPlayerXCordinate(playerX - 1);
-}//end of movePlayerSouthWest()
-
-//Function for MiniAT integration: moves the player UP then RIGHT
-void Player::movePlayerNorthEast()
-{
-	setPlayerYCordinate(playerY - 1);
-	setPlayerXCordinate(playerX + 1);
-}//end of the movePlayerNorthEast
-
-//Function for MiniAT integration: moves the player UP then LEFT
-void Player::movePlayerNorthWest()
-{
-	setPlayerYCordinate(playerY - 1);
-	setPlayerXCordinate(playerX - 1);
-}//end of the movePlayerNorthWest()
-
-
 /*
 Player::~Player()
 {

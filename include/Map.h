@@ -14,10 +14,10 @@ class Map
 		//Constructors
 		Map();
 		Map(int rows, int cols);
-		
+
 		//Deconstructor
 		~Map();
-		
+
 		//displays map
 		void displayRope(SDL_Renderer* renderer);
 
@@ -26,14 +26,14 @@ class Map
 
 		//returns a SDL_Point on the screen depending on the spot
 		SDL_Point getPoint(int x, int y);
-		Rope getRope(int x, int y);
+		
 
 		//returns a rope. parameters are location on array
 		Rope getRope(int x, int y);
 
 		//returns a boolean that shows if it is a rope. parameters are location on array
 		bool isRope(int xRope, int yRope);
-		
+
 		//deletes ropes
 		bool deleteRope(int x, int y, SDL_Event *event);
 
