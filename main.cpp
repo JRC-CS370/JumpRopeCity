@@ -109,6 +109,7 @@ int main_start(int argc, char **argv)
 	player.setPlayerYCordinate(0);
 	//Boolean value for keyboard input to register one press
 	bool keypress = false;
+	bool ropeDeleted = false;
 	SDL_Event event;
 	//While the game continues to run
 	while(running)
@@ -126,6 +127,14 @@ int main_start(int argc, char **argv)
 				{
 					keypress = true;
 					player.playerMotion(&event); // Calls the playerMotion function in the Player.cpp class
+					ropeDeleted = theMap.deleteRope(player.getPlayerX(), player.getPlayerY(), &event);
+					if(ropeDeleted == true)
+					{
+						std::cout << std::endl;
+						std::cout << "THE ROPE IS DELETED" << std::endl;
+						std::cout << std::endl;
+						ropeDeleted = false;
+					}
 				}//end of if statement
 				break;
 			case SDL_KEYUP:
@@ -135,16 +144,22 @@ int main_start(int argc, char **argv)
 				//Default case simply breaks out of the switch statement
 				break;
 		}//end of the switch case
+
 		//makes window background not black
 		SDL_SetRenderDrawColor(renderer, 200, 242, 242, 255);
+
 		//resets the renderer
 		SDL_RenderClear(renderer);
+
 		//displays the ropes existing within theMap instance of the Map class using the .displayRope function in the Map.cpp file
 		theMap.displayRope(renderer);
+
 		//sets the draw color for the renderer
 		SDL_SetRenderDrawColor(renderer, 100, 200, 100, 200);
+
 		//Displays (renders) the actual player to the window
 		player.renderP(renderer);
+
 		//outputs the renderer
 		SDL_RenderPresent(renderer);
 
