@@ -253,10 +253,10 @@ static void cleanup() {
     *It will be used later through*/
 
     if(cycles < MAX_CYCLES) {
-        printf("\n%"PRIu64" cycles executed\n", cycles);
+        printf("\n%" PRIu64 " cycles executed\n", cycles);
     }
     else {
-        printf("Runtime exceeded %"PRIu64" cycles!\n", MAX_CYCLES);
+        printf("Runtime exceeded %" PRIu64 " cycles!\n", MAX_CYCLES);
     }
 
     return;
@@ -268,7 +268,7 @@ static void cleanup() {
 static void print_usage() {
 
     fprintf(stderr, "\n");
-    fprintf(stderr, "Usage:  "EXECUTABLE" [bin_file]\n");
+    fprintf(stderr, "Usage:  " EXECUTABLE " [bin_file]\n");
     fprintf(stderr, "\n");
 
     return;
