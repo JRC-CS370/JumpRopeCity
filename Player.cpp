@@ -168,8 +168,8 @@ void Player::createPlayerMap()
 			for (int x=0; x < playerCols; x++)
 			{
 				//Starts the top left corner of the playerMap at (50,50) Also spaces the x and y coordinates apart by a measure of 125
-				playerMap[y][x].x = (x*125) + 50;
-				playerMap[y][x].y = (y*125) + 0;
+				playerMap[y][x].x = (x*100) + 100;
+				playerMap[y][x].y = (y*100) + 100;
 			}//end of for loop with y
 		}//end of for loop with x
 }//end of createPlayerMap

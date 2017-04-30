@@ -6,7 +6,7 @@ Rope::Rope()
 	//Initialize
 	mTexture = NULL;
 	mWidth = 100;
-	mHeight = 15;
+	mHeight = 100;
 
 	midpoint.x = 0;
 	midpoint.y = 0;
