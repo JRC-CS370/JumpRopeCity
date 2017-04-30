@@ -28,8 +28,8 @@ SDL_Point Map::getPoint(int x, int y) // values passed in are position on grid n
 {
 	SDL_Point point;
 
-	point.x = (x * 125) + 50;
-	point.y = (y * 125) + 50;
+	point.x = (x * 100) + 100;
+	point.y = (y * 100) + 100;
 
 	return point;
 }//end of getPoint(int x, int y)
