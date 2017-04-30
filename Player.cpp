@@ -30,9 +30,18 @@ Player::Player()
 	playerTexture = NULL;
 	direction = 1;
 
-	myFile.open("Testing/Logs/playerMovement.log");
-	myFile.close();
+	std::string path = "/Testing/Logs/playerMovement.log";
+	myFile.open((JR_HOME + path).c_str());
+	if(myFile.is_open())
+	{
+		std::cout << "Opened a-ok" << std::endl;
+	}
 }//end of Player function
+
+Player::~Player()
+{
+	myFile.close();
+}
 
 //function to set an image to the player
 void Player::setTexture(SDL_Renderer *renderer)
@@ -211,6 +220,11 @@ void Player::movePlayerUp(Map &theMap)
 	setPlayerYCordinate(playerY - 1);
 	direction = 2;
 
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
+
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
 }//end of movePlayerUp
@@ -222,6 +236,11 @@ void Player::movePlayerDown(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
 	direction = 1;
+
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -235,6 +254,11 @@ void Player::movePlayerLeft(Map &theMap)
 	setPlayerXCordinate(playerX - 1);
 	direction = 4;
 
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
+
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
 }//end of Player::movePlayerLeft
@@ -246,6 +270,11 @@ void Player::movePlayerRight(Map &theMap)
 	playerPX = playerX;
 	setPlayerXCordinate(playerX + 1);
 	direction = 3;
+
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -259,6 +288,11 @@ void Player::movePlayerSouthEast(Map &theMap)
 	setPlayerXCordinate(playerX + 1);
 	direction = 1;
 
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
+
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
 }//end of movePlayerSouthEast()
@@ -270,6 +304,11 @@ void Player::movePlayerSouthWest(Map &theMap)
 	setPlayerYCordinate(playerY + 1);
 	setPlayerXCordinate(playerX - 1);
 	direction = 1;
+
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -283,6 +322,11 @@ void Player::movePlayerNorthEast(Map &theMap)
 	setPlayerXCordinate(playerX + 1);
 	direction = 2;
 
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
+
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
 }//end of the movePlayerNorthEast
@@ -294,6 +338,11 @@ void Player::movePlayerNorthWest(Map &theMap)
 	setPlayerYCordinate(playerY - 1);
 	setPlayerXCordinate(playerX - 1);
 	direction = 2;
+
+	if(myFile.is_open())
+	{
+		myFile << playerX << " " << playerY << std::endl;
+	}
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 

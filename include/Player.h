@@ -15,6 +15,8 @@ class Player
 
 		//Used for Initializing variables that exist in the Player.cpp file
 		Player();
+		~Player();
+
 
 		//Sets the x and y positions of the player
 		void setPlayerXCordinate(int playerX);
