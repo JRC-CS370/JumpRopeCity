@@ -34,6 +34,7 @@ buildProgram("JumpRopeCity", CPPFILES, CPPPATH = INC, LIBS = LIBS, CPPDEFINES=[ 
 ##These are for the assembly Programs####
 #buildMash('move.asm')
 buildMash('AssemblyPrograms/MovementTest.asm')
-buildMash('AssemblyPrograms/TileRunner.asm')      
+buildMash('AssemblyPrograms/TileRunner.asm')
+buildMash('AssemblyPrograms/teethProg.asm')  
 #buildMash('simple_term_flash_demo.asm')#
 #########################################
