@@ -88,6 +88,31 @@ int main_start(int argc, char **argv)
 	}//end of if statement
 	//creates an instance of the map class called theMap
 	Map theMap;
+
+	std::string path = "/images/JRCGraphic.png";
+	if(texture != NULL)
+	SDL_DestroyTexture(texture);
+	//Load image
+	SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
+	if(loadedSurface == NULL)
+		std::cout << "Load image error " << IMG_GetError() << std::endl;
+	else
+	{
+		//Create texture from surface pixels
+		texture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+		if(texture == NULL)
+			std::cout << "Could not create texture from surface " << SDL_GetError() << std::endl;
+
+		//Get rid of old loaded surface
+		SDL_FreeSurface(loadedSurface);
+	}
+
+	SDL_Rect background_image;
+	background_image.x = 0;
+	background_image.y = 0;
+	background_image.w = SCREEN_W;
+	background_image.h = SCREEN_H;
+
 	//Calls the function .setRopes in the Map.cpp file
 	bool success = theMap.setRopes(total, renderer);
 	bool running = false;
@@ -145,17 +170,14 @@ int main_start(int argc, char **argv)
 				break;
 		}//end of the switch case
 
-		//makes window background not black
-		SDL_SetRenderDrawColor(renderer, 200, 242, 242, 255);
-
 		//resets the renderer
 		SDL_RenderClear(renderer);
+
+		SDL_RenderCopy(renderer, texture, NULL, &background_image);
 
 		//displays the ropes existing within theMap instance of the Map class using the .displayRope function in the Map.cpp file
 		theMap.displayRope(renderer);
 
-		//sets the draw color for the renderer
-		SDL_SetRenderDrawColor(renderer, 100, 200, 100, 200);
 
 		//Displays (renders) the actual player to the window
 		player.setTexture(renderer);
