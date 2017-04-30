@@ -8,7 +8,7 @@
 void peripherals_cleanup();
 
     /*
-    This function will deal with the cleanup and removal of data from 
+    This function will deal with the cleanup and removal of data from
     the peripherals.
 
     Arguments: nothing
@@ -16,7 +16,7 @@ void peripherals_cleanup();
     */
 
 
-Player peripherals_clock(miniat *m, Player &p, Map &theMap);
+void peripherals_clock(miniat *m, Player &p, Map &theMap);
 
     /*
     Peripherals_clock deals with everything to do with the peripherals. It

@@ -2,6 +2,7 @@
 #include <SDL2/SDL_image.h>
 #include <string>
 #include <iostream>
+#include <fstream>
 #include "Define.h"
 #include "Map.h"
 
@@ -70,10 +71,12 @@ class Player
 		bool scanEast(Map ropeMap);
 		void ropeHit(Map ropeMap);
 
+		std::ofstream myFile;
+
 	private:
 		SDL_Rect player; //Creates a rectangle for the texture to render to
 		SDL_Texture* playerTexture; //playerimage
-		
+
 		int direction;
 		/* *******************************
 		 * direction is number from 1-4
@@ -82,7 +85,7 @@ class Player
 		 * 3 = right
 		 * 4 = left
 		 * ******************************/
-		
+
 		int playerHeight; //Height of the player
 		int playerWidth; //Width of the player
 		int playerX; //Creates the x coordinte for the player

@@ -41,7 +41,7 @@ void peripherals_cleanup()
  * @return     [The return returns the current player back to where
  *              it was called from, allowing the program to continue]
  */
-Player peripherals_clock(miniat *m, Player &p, Map &theMap)
+void peripherals_clock(miniat *m, Player &p, Map &theMap)
 {
 	m_bus bus;
 
@@ -173,6 +173,5 @@ Player peripherals_clock(miniat *m, Player &p, Map &theMap)
 
 	miniat_pins_bus_set(m, bus);
 
-	return p;
 
 }

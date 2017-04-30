@@ -170,7 +170,7 @@ int main_start(int argc, char **argv)
 		}
 
 		miniat_clock(m);
-		player = peripherals_clock(m, player, theMap);
+		peripherals_clock(m, player, theMap);
 		//restricts to 60fps
 		SDL_Delay(1000/60);
 	}//end of while loop

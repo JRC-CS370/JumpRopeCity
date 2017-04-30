@@ -26,16 +26,19 @@ Player::Player()
 	//Makes the value of the playerRows and playerCols to be 5
 	this->playerRows = 5;
 	this->playerCols = 5;
-	
+
 	playerTexture = NULL;
 	direction = 1;
+
+	myFile.open("Testing/Logs/playerMovement.log");
+	myFile.close();
 }//end of Player function
 
 //function to set an image to the player
 void Player::setTexture(SDL_Renderer *renderer)
 {
 	std::string path = "";
-	
+
 	switch(direction)
 	{
 		case 1:
@@ -69,7 +72,7 @@ void Player::setTexture(SDL_Renderer *renderer)
 		playerTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
 		if(playerTexture == NULL)
 			std::cout << "Could not create texture from surface " << SDL_GetError() << std::endl;
-	
+
 		//Get rid of old loaded surface
 		SDL_FreeSurface(loadedSurface);
 	}//end of else
@@ -207,7 +210,7 @@ void Player::movePlayerUp(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
 	direction = 2;
-	
+
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
 }//end of movePlayerUp
