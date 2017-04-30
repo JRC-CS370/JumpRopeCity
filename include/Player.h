@@ -15,9 +15,6 @@ class Player
 		//Used for Initializing variables that exist in the Player.cpp file
 		Player();
 
-		//Renders the actual player on the window
-		void renderP(SDL_Renderer *renderer);
-
 		//Sets the x and y positions of the player
 		void setPlayerXCordinate(int playerX);
 		void setPlayerYCordinate(int playerY);
@@ -62,6 +59,11 @@ class Player
 		//Function for MiniAT integration: moves the player UP then LEFT
 		void movePlayerNorthWest(Map &theMap);
 
+		//sets playerimage
+		void setTexture(SDL_Renderer *renderer);
+		//displays player
+		void displayPlayer(SDL_Renderer *renderer);
+
 		bool scanSouth(Map ropeMap);
 		bool scanNorth(Map ropeMap);
 		bool scanWest(Map ropeMap);
@@ -69,7 +71,18 @@ class Player
 		void ropeHit(Map ropeMap);
 
 	private:
-		SDL_Rect player; //Creates a rectangle to display as the actual player
+		SDL_Rect player; //Creates a rectangle for the texture to render to
+		SDL_Texture* playerTexture; //playerimage
+		
+		int direction;
+		/* *******************************
+		 * direction is number from 1-4
+		 * 1 = down		default
+		 * 2 = up
+		 * 3 = right
+		 * 4 = left
+		 * ******************************/
+		
 		int playerHeight; //Height of the player
 		int playerWidth; //Width of the player
 		int playerX; //Creates the x coordinte for the player

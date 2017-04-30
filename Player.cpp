@@ -10,7 +10,7 @@
 Player::Player()
 {
 	//Makes the players height and width values
-	playerHeight = 120;
+	playerHeight = 100;
 	playerWidth = 100;
 
 	//Sets the point of the player to 0,0 by default
@@ -26,13 +26,61 @@ Player::Player()
 	//Makes the value of the playerRows and playerCols to be 5
 	this->playerRows = 5;
 	this->playerCols = 5;
+	
+	playerTexture = NULL;
+	direction = 1;
 }//end of Player function
 
-//This function creates the renderer and displays the actual player
-void Player::renderP(SDL_Renderer *renderer)
+//function to set an image to the player
+void Player::setTexture(SDL_Renderer *renderer)
 {
-	SDL_RenderFillRect(renderer, &player);
-}//end of renderP
+	std::string path = "";
+	
+	switch(direction)
+	{
+		case 1:
+			path = "/images/DownFacing.png";
+			break;
+
+		case 2:
+			path = "/images/UpFacing.png";
+			break;
+
+		case 3:
+			path = "/images/RightFacing.png";
+			break;
+
+		case 4:
+			path = "/images/LeftFacing.png";
+			break;
+
+		default:
+			path = "/images/DownFacing.png";
+			break;
+	}
+
+	SDL_Surface* loadedSurface = IMG_Load((JR_HOME + path).c_str());
+
+	if(loadedSurface == NULL)
+		std::cout << "Load image error " << IMG_GetError() << std::endl;
+	else
+	{
+		//Create texture from surface pixels
+		playerTexture = SDL_CreateTextureFromSurface(renderer, loadedSurface);
+		if(playerTexture == NULL)
+			std::cout << "Could not create texture from surface " << SDL_GetError() << std::endl;
+	
+		//Get rid of old loaded surface
+		SDL_FreeSurface(loadedSurface);
+	}//end of else
+}
+
+//function to display the player
+void Player::displayPlayer(SDL_Renderer* renderer)
+{
+	//renderer, texture, srcrect, destination rect
+	SDL_RenderCopy(renderer, playerTexture, NULL, &player);
+}
 
 //This function gets the players height
 int Player::getPlayerHeight()
@@ -158,8 +206,10 @@ void Player::movePlayerUp(Map &theMap)
 	playerPY = playerY;
 	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
-
+	direction = 2;
+	
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
+
 }//end of movePlayerUp
 
 //Function to increment player.y and calls setPlayerYCordinate
@@ -168,6 +218,7 @@ void Player::movePlayerDown(Map &theMap)
 	playerPY = playerY;
 	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
+	direction = 1;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -179,6 +230,7 @@ void Player::movePlayerLeft(Map &theMap)
 	playerPY = playerY;
 	playerPX = playerX;
 	setPlayerXCordinate(playerX - 1);
+	direction = 4;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -190,6 +242,7 @@ void Player::movePlayerRight(Map &theMap)
 	playerPY = playerY;
 	playerPX = playerX;
 	setPlayerXCordinate(playerX + 1);
+	direction = 3;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -201,6 +254,7 @@ void Player::movePlayerSouthEast(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
 	setPlayerXCordinate(playerX + 1);
+	direction = 1;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -212,6 +266,7 @@ void Player::movePlayerSouthWest(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY + 1);
 	setPlayerXCordinate(playerX - 1);
+	direction = 1;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -223,6 +278,7 @@ void Player::movePlayerNorthEast(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
 	setPlayerXCordinate(playerX + 1);
+	direction = 2;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 
@@ -234,6 +290,7 @@ void Player::movePlayerNorthWest(Map &theMap)
 	playerPX = playerX;
 	setPlayerYCordinate(playerY - 1);
 	setPlayerXCordinate(playerX - 1);
+	direction = 2;
 
 	theMap.deleteRope(playerX, playerY, playerPX, playerPY);
 

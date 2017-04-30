@@ -158,7 +158,8 @@ int main_start(int argc, char **argv)
 		SDL_SetRenderDrawColor(renderer, 100, 200, 100, 200);
 
 		//Displays (renders) the actual player to the window
-		player.renderP(renderer);
+		player.setTexture(renderer);
+		player.displayPlayer(renderer);
 
 		//outputs the renderer
 		SDL_RenderPresent(renderer);
