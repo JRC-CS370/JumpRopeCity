@@ -194,7 +194,7 @@ int main_start(int argc, char **argv)
 		miniat_clock(m);
 		peripherals_clock(m, player, theMap);
 		//restricts to 60fps
-		SDL_Delay(1000/60);
+		SDL_Delay(1000/30);
 	}//end of while loop
 
 	//Closes out the window, renderer, and the texture
