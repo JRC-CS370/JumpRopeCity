@@ -75,7 +75,7 @@ int main_start(int argc, char **argv)
 
 	SDL_Init(SDL_INIT_EVERYTHING);
 	//creates the SDL_window to be the size 750x750 and centered in the screen
-	window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, 750, 750, SDL_WINDOW_SHOWN);
+	window = SDL_CreateWindow("Map", SDL_WINDOWPOS_CENTERED, SDL_WINDOWPOS_CENTERED, SCREEN_W, SCREEN_H, SDL_WINDOW_SHOWN);
 	if(window == NULL)
 	{
 		std::cout << "window" << SDL_GetError() << std::endl;
