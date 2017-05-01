@@ -44,6 +44,9 @@
 #  movi r103 = 3 #Loop Variable for Vertical snake
   movi r104 = 2 #Loop Variable for Vertical snake
 
+  movi r106 = 2
+  movi r108 = 2
+
 !horizontalLoop
 
 !eastSouth
@@ -92,5 +95,50 @@
     stor[P_MOVE_N] = r200
     stor[P_MOVE_N] = r200
 
+  !verticalLoopTwo
+    !SouthEast
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_E] = r200
+
+    !NorthEast
+      dec r106
+      stor[P_MOVE_N] = r200
+      stor[P_MOVE_N] = r200
+      stor[P_MOVE_N] = r200
+      stor[P_MOVE_N] = r200
+      stor[P_MOVE_E] = r200
+      brag[!SouthEast], r106 > r0
+
+    !lastSouth
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+      stor[P_MOVE_S] = r200
+
+    !horizontalLoopTwo
+      !westNorth
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_N] = r200
+
+      !eastNorth
+        dec r108
+        stor[P_MOVE_E] = r200
+        stor[P_MOVE_E] = r200
+        stor[P_MOVE_E] = r200
+        stor[P_MOVE_E] = r200
+        stor[P_MOVE_N] = r200
+        brag[!westNorth], r108 > r0
+
+      !lastWest
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
+        stor[P_MOVE_W] = r200
 !inf
   bra[!inf]
