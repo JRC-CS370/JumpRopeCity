@@ -9,3 +9,5 @@
 
 #Ignore Swap files
 .swp
+
+.vscode
